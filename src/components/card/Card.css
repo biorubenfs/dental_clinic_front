@@ -1,0 +1,12 @@
+.cards {
+    display: flex;
+    flex-direction: column;
+    width: 8em;
+    border: solid black 0.1em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.text {
+    font-size: small;
+}
