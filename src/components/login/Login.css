@@ -1,0 +1,10 @@
+.login-button {
+  color: green;
+}
+
+.input {
+  height: 1.6rem;
+  width: 16rem;
+  border-radius: 0.6rem;
+  margin: 0.6rem 0rem;
+}
