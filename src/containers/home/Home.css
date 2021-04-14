@@ -1,18 +1,7 @@
-.header {
-    display: flex;
-}
-
 .cards-grid {
     display: flex;
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
-
-.logo {
-    display: flex;
-    flex-direction: row;
-    width: 8em;
-    height: 8em;
 }

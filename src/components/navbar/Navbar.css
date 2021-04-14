@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 4em;
+    border: 0.5em solid black;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    max-height: 100%;
+    width: 5em;
+}
+
+a:visited {
+    color: black;
+}
+
+.navlink {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;    
+}
+
+a {
+    padding: 1em;
+}
+
+
+
