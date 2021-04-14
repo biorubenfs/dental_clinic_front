@@ -9,7 +9,7 @@ const Home = (props) => {
     return (
         <>
             <div>
-                <Navbar />
+                <Navbar/>
             </div>
             <div className='covid-alert'>
                 <Covid />
