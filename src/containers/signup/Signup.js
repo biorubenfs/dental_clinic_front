@@ -8,10 +8,10 @@ class Signup extends Component {
         super(props);
         this.state = {
             error: null,
-            test: null,
             username: null,
             email: null,
-            password: null
+            password: null,
+            formIsValid: false
         }
     };
 
@@ -28,15 +28,33 @@ class Signup extends Component {
             return this.setState({ error: 1 })
         };
 
+        if (this.state.email) {
+            let lastAtPos = this.state.email.lastIndexOf('@');
+            let lastDotPos = this.state.email.lastIndexOf('.');
+
+            // Check why email like admin@admin@.com is valid
+            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.email.indexOf('@@') == -1 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
+                // this.setState({ formIsValid: false });
+                return this.setState({ error: 4 })
+            }
+        }
+
+        // if (this.state.email.indexOf('@') === -1) {
+        //     return this.setState({ error: 4 })
+        // }
+
         try {
             const res = await fetchSignup(this.state.username, this.state.email, this.state.password);
-            if (res != undefined) {
+
+            if (res.status === 201) {
                 this.setState({ error: 2 })
-            } else {
+            } else if (res.status === 400) {
+                console.log(res);
                 this.setState({ error: 3 });
             }
 
         } catch (error) {
+            // console.log(error);
             this.setState({ error: 0 });
         }
     }
@@ -60,6 +78,9 @@ class Signup extends Component {
                 break;
             case 3:
                 msg = <SignupMessage msg="Opps! User is already registered" emoji=":-)"></SignupMessage>;
+                break;
+            case 4:
+                msg = <SignupMessage msg="Email is not valid" emoji=":-)"></SignupMessage>;
                 break;
             default:
         }

@@ -8,14 +8,20 @@ const fetchSignup = async (username, email, password) => {
 
         const urlLogin = 'http://localhost:3001/users/signup';
 
-        await fetch(urlLogin, {
+        const object = await fetch(urlLogin, {
             method: 'POST',
             headers: { 'name': username, 'email': email, 'password': password }
         });
 
+        // console.log(object.res);
+
+        return object;
+
+
     } catch (error) {
-        // return error.message;
-        console.log("Something was wrong during fetching");
+        return { status: "custom" };
+        // return error;
+        // console.log("Something was wrong during fetching");
     }
 }
 
