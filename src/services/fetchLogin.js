@@ -3,6 +3,7 @@ const fetchLogin = async (email, password) => {
     try {
 
         // console.log(email, password);
+        console.log(`Data received: email: ${email} | password ${password}}`)
         console.log("Fetching...");
 
         const urlLogin = 'http://localhost:3001/auth/login';

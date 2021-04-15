@@ -1,11 +1,18 @@
 .login-button {
-  color: green;
+  width: 6rem;
+  height: 2rem;
+  color: black;
 }
 
-.input {
-  padding-left: 1rem;
+.input-email {
   height: 1.6rem;
   width: 16rem;
-  border-radius: 0.6rem;
+
+  margin: 0.6rem 0rem;
+}
+
+.input-password {
+  height: 1.6rem;
+  width: 16rem;
   margin: 0.6rem 0rem;
 }

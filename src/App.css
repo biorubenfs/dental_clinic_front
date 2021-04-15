@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+/* Buttons */
+
+.button {
+  border-radius: 1rem;
+  border-style: none;
+  color: black;
+  background-color: white;
+}
+
+.button:hover {
+  background-color: lightblue;
+  transition: 0.4s;
+}
+
+.input {
+  padding-left: 1rem;
+  border-radius: 0.6rem;
+}
