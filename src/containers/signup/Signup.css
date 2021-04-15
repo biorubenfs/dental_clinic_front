@@ -1,0 +1,12 @@
+.signup-button {
+  width: 6rem;
+  height: 2rem;
+  color: black;
+}
+
+.input {
+  height: 1.6rem;
+  width: 16rem;
+
+  margin: 0.6rem 0rem;
+}
