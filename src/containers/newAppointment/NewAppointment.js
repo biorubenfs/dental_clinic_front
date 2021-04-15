@@ -32,14 +32,12 @@ class NewAppointment extends Component {
 
         try {
 
-            const res = await fetchAppointments(userData.token, this.state.date, this.state.userId, this.state.doctorId);
+            const res = await fetchAppointments.newAppointment(userData.token, this.state.date, this.state.userId, this.state.doctorId);
 
-            console.log(res)
-
-            if (res.status !== 201) {
+            if (res.status === 201) {
                 this.setState({ message: 2 })
-            } else if (res.json()){
-                this.setState({ message: 3 })
+            } else {
+                this.setState({ message:3 })
             }
 
         } catch (e) {
@@ -64,10 +62,7 @@ class NewAppointment extends Component {
                 msg = <AppointmentMessage msg="Appointment created"></AppointmentMessage>;
                 break;
             case 3:
-                msg = <AppointmentMessage msg="Doctor busy"></AppointmentMessage>;
-                break;
-            case 4:
-                msg = <AppointmentMessage msg="User busy"></AppointmentMessage>;
+                msg = <AppointmentMessage msg="CLient or Doctor are busy at that time"></AppointmentMessage>;
                 break;
             default:
                 msg = null
@@ -89,7 +84,7 @@ class NewAppointment extends Component {
                     <label htmlFor="date">Date</label>
                     <input
                         className="input"
-                        type="date"
+                        type="datetime-local"
                         name="date"
                         min={dateNow}
                         required
