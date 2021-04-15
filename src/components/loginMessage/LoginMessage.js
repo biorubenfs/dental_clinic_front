@@ -1,7 +1,4 @@
-
-
-const Error = (props) => {
-
+const LoginMessage = (props) => {
 
     return (
         <h4>
@@ -10,4 +7,4 @@ const Error = (props) => {
     )
 }
 
-export default Error;
+export default LoginMessage;
