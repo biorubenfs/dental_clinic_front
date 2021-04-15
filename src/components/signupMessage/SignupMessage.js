@@ -2,7 +2,8 @@ const SignupMessage = (props) => {
 
     return (
         <h4>
-            {props.msg}
+            {props.msg} <br></br><br></br>
+            {props.emoji}
         </h4>
     )
 }

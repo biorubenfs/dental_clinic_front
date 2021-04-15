@@ -7,7 +7,7 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: 1,
+            error: null,
             test: null,
             username: null,
             email: null,
@@ -24,9 +24,18 @@ class Signup extends Component {
     async signupHandler(e) {
         e.preventDefault();
 
+        if (!this.state.username || !this.state.email || !this.state.password) {
+            return this.setState({ error: 1 })
+        };
+
         try {
             const res = await fetchSignup(this.state.username, this.state.email, this.state.password);
-            console.log(res);
+            if (res != undefined) {
+                this.setState({ error: 2 })
+            } else {
+                this.setState({ error: 3 });
+            }
+
         } catch (error) {
             this.setState({ error: 0 });
         }
@@ -38,10 +47,19 @@ class Signup extends Component {
 
         switch (this.state.error) {
             case null:
-                msg = <SignupMessage msg="Join us!"></SignupMessage>;
+                msg = <SignupMessage msg="Join us!" emoji=";-)"></SignupMessage>;
+                break;
+            case 0:
+                msg = <SignupMessage msg="Something was wrong" emoji=":'‑("></SignupMessage>;
                 break;
             case 1:
-                msg = <SignupMessage msg="Signup!"></SignupMessage>;
+                msg = <SignupMessage msg="All fields must be completed" emoji=":‑/"></SignupMessage>;
+                break;
+            case 2:
+                msg = <SignupMessage msg="You signed up successfully!" emoji=":-)"></SignupMessage>;
+                break;
+            case 3:
+                msg = <SignupMessage msg="Opps! User is already registered" emoji=":-)"></SignupMessage>;
                 break;
             default:
         }
