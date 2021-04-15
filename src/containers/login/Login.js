@@ -51,7 +51,7 @@ class Login extends Component {
     render() {
         let msg;
 
-        if (this.state.error[0] == 3) {
+        if (this.state.error[0] === 3) {
             msg = <LoginMessage msg="Enter your credentials"></LoginMessage>;
         }
         else if (this.state.error[0] === 2) {
@@ -89,7 +89,7 @@ class Login extends Component {
                         onChange={(e) => this.getPasswordChange(e)}
                     ></input>
                     <br></br>
-                    <button onClick={(e) => this.handlerFetch(e)}>Login</button>
+                    <button className="button login-button" onClick={(e) => this.handlerFetch(e)}>Login</button>
                 </form>
             </>
         );
