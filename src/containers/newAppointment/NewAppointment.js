@@ -17,7 +17,6 @@ class NewAppointment extends Component {
     inputHandler(event) {
         const attribute = event.target.name;
         this.setState({ [attribute]: event.target.value });
-        console.log(this.state.date, this.state.userId, this.state.doctorId)
     }
 
     async fetchHandler(event) {
@@ -44,6 +43,7 @@ class NewAppointment extends Component {
             }
 
         } catch (e) {
+            console.log(e)
             this.setState({ message: 1 })
 
         }
@@ -100,7 +100,7 @@ class NewAppointment extends Component {
                         className="input"
                         type="number"
                         min="2"
-                        name="user"
+                        name="userId"
                         required
                         onChange={(e) => this.inputHandler(e)}
                     ></input>
@@ -109,7 +109,7 @@ class NewAppointment extends Component {
                         className="input"
                         type="number"
                         min="1"
-                        name="doctor"
+                        name="doctorId"
                         required
                         onChange={(e) => this.inputHandler(e)}
                     ></input>
