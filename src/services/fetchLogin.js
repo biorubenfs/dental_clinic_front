@@ -2,19 +2,21 @@ const fetchLogin = async (email, password) => {
 
     try {
 
-        console.log(email, password);
+        // console.log(email, password);
+        console.log("Fetching...");
 
         const urlLogin = 'http://localhost:3001/auth/login';
 
         const res = await fetch(urlLogin, {
             method: 'POST',
-            headers: { "email": email, "password": password }
+            headers: { 'email': email, 'password': password }
         });
+
 
         const object = await res.json();
 
-        console.log("After fetching");
-        console.log(object);
+        // console.log("After fetching");
+        // console.log(object);
 
         return object;
 

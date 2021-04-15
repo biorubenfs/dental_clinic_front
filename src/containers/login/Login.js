@@ -5,6 +5,7 @@ const Login = (props) => {
 
     let email;
     let password;
+    let token;
 
     const getEmailChange = (event) => {
         console.log(event.target.value);
@@ -16,8 +17,13 @@ const Login = (props) => {
         password = event.target.value;
     }
 
-    const handlerLogin = () => {
-        fetchLogin(email, password);
+    const handlerLogin = async () => {
+        // const userData = await fetchLogin(email, password);
+        // localStorage.setItem('userData', JSON.stringify(userData));
+        token = await fetchLogin(email, password);
+
+        console.log(token);
+        console.log("We got the token!!");
     }
 
     return (
@@ -30,8 +36,8 @@ const Login = (props) => {
                 <input className="input" type="password" name="password" placeholder="Enter your password" required
                     onChange={(e) => getPasswordChange(e)}></input><br></br>
 
-                {/* <button className="login-button" onClick={handlerLogin}>Login</button> */}
-                <button className="login-button" onClick={() => handlerLogin()}>Login</button>
+                <button className="login-button" onClick={handlerLogin}>Login</button>
+                {/* <button className="login-button" onClick={() => handlerLogin(encodeURI)}>Login</button> */}
             </form>
         </div>
     )
