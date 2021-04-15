@@ -5,9 +5,7 @@ const fetchAppointments = {
 
             const res = await fetch('http://localhost:3001/appointments/newApptts', {
                 method: 'POST',
-                headers: {
-                    "authentication": token
-                },
+                headers: { "authentication": token },
                 body: {
                     "date": date,
                     "usersId": user,
@@ -28,9 +26,7 @@ const fetchAppointments = {
         try {
             const res = await fetch('http://localhost:3001/appointments/appttsStts', {
                 method: 'GET',
-                headers: {
-                    "authentication": token
-                }
+                headers: { "authentication": token }
             });
 
             const object = await res.json();
@@ -46,9 +42,7 @@ const fetchAppointments = {
         try {
             const res = await fetch(`http://localhost:3001/appointments/appttsDlt/${userId}`, {
                 method: 'PATCH',
-                headers: {
-                    "authentication": token
-                }
+                headers: { "authentication": token }
             }
             );
 

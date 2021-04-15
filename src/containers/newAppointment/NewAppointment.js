@@ -7,15 +7,17 @@ class NewAppointment extends Component {
         super(props);
         this.state = {
             date: null,
-            usersId: null,
-            doctorsId: null
+            userId: null,
+            doctorId: null,
+            message: null
         };
     }
-    
+
 
     inputHandler(event) {
         const attribute = event.target.name;
         this.setState({ [attribute]: event.target.value });
+        console.log(this.state.date, this.state.userId, this.state.doctorId)
     }
 
     async fetchHandler(event) {
@@ -24,29 +26,59 @@ class NewAppointment extends Component {
         const userDataLocal = localStorage.getItem('userData')
         const userData = JSON.parse(userDataLocal);
 
+        if (!this.state.date || !this.state.userId || !this.state.doctorId) {
+            
+            return this.setState({ message: 0 })
+        };
+
         try {
 
-            const res = await fetchAppointments(userData.token ,this.state.date, this.state.usersId, this.state.doctorsId);
+            const res = await fetchAppointments(userData.token, this.state.date, this.state.userId, this.state.doctorId);
+
+            console.log(res)
 
             if (res.status !== 201) {
-                
+                this.setState({ message: 2 })
+            } else if (res.json()){
+                this.setState({ message: 3 })
             }
 
-        } catch(e) {
-            
+        } catch (e) {
+            this.setState({ message: 1 })
+
         }
     }
 
     render() {
+
+        let msg;
+
+        switch (this.state.message) {
+            case 0:
+                msg = <AppointmentMessage msg="All fields are required"></AppointmentMessage>;
+                break;
+            case 1:
+                msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>;
+                break;
+            case 2:
+                msg = <AppointmentMessage msg="Appointment created"></AppointmentMessage>;
+                break;
+            case 3:
+                msg = <AppointmentMessage msg="Doctor busy"></AppointmentMessage>;
+                break;
+            case 4:
+                msg = <AppointmentMessage msg="User busy"></AppointmentMessage>;
+                break;
+            default:
+                msg = null
+        }
+
 
         let date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
         const dateNow = (`${year}-${month}-${day}`);
-
-
-
 
         return (
             <>
@@ -81,10 +113,9 @@ class NewAppointment extends Component {
                         required
                         onChange={(e) => this.inputHandler(e)}
                     ></input>
+                    <button className="button" type="button" onClick={(e) => this.fetchHandler(e)}>Submit</button>
                 </form>
-                <div>
-                    msg
-                </div>
+                {msg}
             </>
         );
     }
