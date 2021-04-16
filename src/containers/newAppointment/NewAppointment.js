@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppointmentMessage from '../../components/appointmentMessage/AppointmentMessage';
 import fetchAppointments from '../../services/fetchAppointments';
+import './NewAppointment.css'
 
 class NewAppointment extends Component {
     constructor(props) {
@@ -19,11 +20,6 @@ class NewAppointment extends Component {
         const userId = event.target[1].value;
         const doctorId = event.target[2].value;
 
-        if (!date || !userId || !doctorId) {
-
-            return this.setState({ message: 0 })
-        };
-
         try {
 
             const res = await fetchAppointments.newAppointment(userData.token, date, userId, doctorId);
@@ -41,8 +37,6 @@ class NewAppointment extends Component {
                     this.setState({ message: 5 })
                 }
             }
-
-
 
         } catch (e) {
             console.log(e)
