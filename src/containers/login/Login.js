@@ -22,12 +22,10 @@ class Login extends Component {
 
     getEmailChange(event) {
         this.setState({ email: event.target.value });
-        console.log(this.state.email);
     }
 
     getPasswordChange(event) {
         this.setState({ password: event.target.value });
-        console.log(this.state.password);
     }
 
     async handlerFetch(e) {

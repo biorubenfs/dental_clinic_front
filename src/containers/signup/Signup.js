@@ -7,7 +7,7 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: null,
+            statusCode: null,
             username: null,
             email: null,
             password: null,
@@ -25,37 +25,34 @@ class Signup extends Component {
         e.preventDefault();
 
         if (!this.state.username || !this.state.email || !this.state.password) {
-            return this.setState({ error: 1 })
+            return this.setState({ statusCode: 1 })
         };
 
         if (this.state.email) {
+            let numAts = this.state.email.split('@').length - 1;
             let lastAtPos = this.state.email.lastIndexOf('@');
             let lastDotPos = this.state.email.lastIndexOf('.');
 
-            // Check why email like admin@admin@.com is valid
-            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.email.indexOf('@@') == -1 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
+            // NOTE: Review email validation
+            if (!(numAts === 1 && lastAtPos < lastDotPos && lastAtPos > 0 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
                 // this.setState({ formIsValid: false });
-                return this.setState({ error: 4 })
+                return this.setState({ statusCode: 4 })
             }
         }
-
-        // if (this.state.email.indexOf('@') === -1) {
-        //     return this.setState({ error: 4 })
-        // }
 
         try {
             const res = await fetchSignup(this.state.username, this.state.email, this.state.password);
 
             if (res.status === 201) {
-                this.setState({ error: 2 })
+                this.setState({ statusCode: 2 })
             } else if (res.status === 400) {
                 console.log(res);
-                this.setState({ error: 3 });
+                this.setState({ statusCode: 3 });
             }
 
         } catch (error) {
             // console.log(error);
-            this.setState({ error: 0 });
+            this.setState({ statusCode: 0 });
         }
     }
 
@@ -63,7 +60,7 @@ class Signup extends Component {
 
         let msg;
 
-        switch (this.state.error) {
+        switch (this.state.statusCode) {
             case null:
                 msg = <SignupMessage msg="Join us!" emoji=";-)"></SignupMessage>;
                 break;
@@ -77,24 +74,13 @@ class Signup extends Component {
                 msg = <SignupMessage msg="You signed up successfully!" emoji=":-)"></SignupMessage>;
                 break;
             case 3:
-                msg = <SignupMessage msg="Opps! User is already registered" emoji=":-)"></SignupMessage>;
+                msg = <SignupMessage msg="Opps! User is already registered" emoji=":-o"></SignupMessage>;
                 break;
             case 4:
-                msg = <SignupMessage msg="Email is not valid" emoji=":-)"></SignupMessage>;
+                msg = <SignupMessage msg="Email is not valid" emoji="x-("></SignupMessage>;
                 break;
             default:
         }
-
-        // if (this.state.error == null) {
-
-        // }
-        // else if (this.state.error === 2) {
-        //     msg = <SignupMessage msg="Password or email invalids"></SignupMessage>;
-        // } else if (this.state.error[0] === 1) {
-        //     msg = <SignupMessage msg="Successful login"></SignupMessage>;
-        // } else if (this.state.error[0] === 0) {
-        //     msg = <SignupMessage msg="Internal server error"></SignupMessage>;
-        // }
 
         return (
             <>

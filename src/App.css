@@ -9,17 +9,14 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 60s linear;
+    margin: 2rem;
   }
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  background-image: url(./banner.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
+  background-color: #282c34;
+  min-height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,9 +25,7 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+/* Keyframe del logo */
 
 @keyframes App-logo-spin {
   from {
@@ -39,6 +34,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Body */
+
+.App-body {
+  min-height: 84vh;
+  color: white;
+  background-image: url(./banner.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Buttons */
@@ -55,7 +61,22 @@
   transition: 0.4s;
 }
 
+/* Inputs */
+
 .input {
   padding-left: 1rem;
   border-radius: 0.6rem;
+}
+
+/* Footer */
+
+.App-footer {
+  background-color: #282c34;
+  min-height: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }

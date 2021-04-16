@@ -19,7 +19,8 @@ const fetchSignup = async (username, email, password) => {
 
 
     } catch (error) {
-        return { status: "custom" };
+        // return { status: "custom" };
+        return console.log(error);
         // return error;
         // console.log("Something was wrong during fetching");
     }
