@@ -8,40 +8,43 @@ class Signup extends Component {
         super(props);
         this.state = {
             statusCode: null,
-            username: null,
-            email: null,
-            password: null,
-            formIsValid: false
+            usernameIsValid: false,
+            passwordIsValid: false
         }
+        this.username = null;
+        this.email = null;
+        this.password = null;
     };
 
-    getInputChange(event) {
-        const attribute = event.target.name;
-        // this.setState({ [event.target.name]: event.target.value });
-        this.setState({ [attribute]: event.target.value });
+
+    getUsernameChange(event) {
+        console.log(event);
+        if (event.target.value.length < 5) {
+            console.log("Username must be of minimum 6 characters");
+        } else {
+            this.username = event.target.value;
+        }
+    }
+
+    getEmailChange(event) {
+        this.email = event.target.value;
+    }
+
+    getPasswordChange(event) {
+        if (event.target.value.length < 4) {
+            console.log("Password not valid");
+        } else {
+            console.log("cambiamos el estado y debería renderizarse de nuevo");
+            this.password = event.target.value;
+            this.setState({ passwordIsValid: true });
+        }
     }
 
     async signupHandler(e) {
         e.preventDefault();
 
-        if (!this.state.username || !this.state.email || !this.state.password) {
-            return this.setState({ statusCode: 1 })
-        };
-
-        if (this.state.email) {
-            let numAts = this.state.email.split('@').length - 1;
-            let lastAtPos = this.state.email.lastIndexOf('@');
-            let lastDotPos = this.state.email.lastIndexOf('.');
-
-            // NOTE: Review email validation
-            if (!(numAts === 1 && lastAtPos < lastDotPos && lastAtPos > 0 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
-                // this.setState({ formIsValid: false });
-                return this.setState({ statusCode: 4 })
-            }
-        }
-
         try {
-            const res = await fetchSignup(this.state.username, this.state.email, this.state.password);
+            const res = await fetchSignup(this.username, this.email, this.password);
 
             if (res.status === 201) {
                 this.setState({ statusCode: 2 })
@@ -58,42 +61,46 @@ class Signup extends Component {
 
     render() {
 
-        let msg;
+        // let msg;
 
-        switch (this.state.statusCode) {
-            case null:
-                msg = <SignupMessage msg="Join us!" emoji=";-)"></SignupMessage>;
-                break;
-            case 0:
-                msg = <SignupMessage msg="Something was wrong" emoji=":'‑("></SignupMessage>;
-                break;
-            case 1:
-                msg = <SignupMessage msg="All fields must be completed" emoji=":‑/"></SignupMessage>;
-                break;
-            case 2:
-                msg = <SignupMessage msg="You signed up successfully!" emoji=":-)"></SignupMessage>;
-                break;
-            case 3:
-                msg = <SignupMessage msg="Opps! User is already registered" emoji=":-o"></SignupMessage>;
-                break;
-            case 4:
-                msg = <SignupMessage msg="Email is not valid" emoji="x-("></SignupMessage>;
-                break;
-            default:
-        }
+        // switch (this.state.statusCode) {
+        //     case null:
+        //         msg = <SignupMessage msg="Join us!" emoji=";-)"></SignupMessage>;
+        //         break;
+        //     case 0:
+        //         msg = <SignupMessage msg="Something was wrong" emoji=":'‑("></SignupMessage>;
+        //         break;
+        //     case 2:
+        //         msg = <SignupMessage msg="You signed up successfully!" emoji=":-)"></SignupMessage>;
+        //         break;
+        //     case 3:
+        //         msg = <SignupMessage msg="Opps! User is already registered" emoji=":-o"></SignupMessage>;
+        //         break;
+        //     default:
+        // }
 
         return (
             <>
-                <div>
-                    {msg}
-                </div>
 
-                <form>
-                    <input className="input" type="text" name="username" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your username"></input><br></br>
-                    <input className="input" type="email" name="email" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your email"></input><br></br>
-                    <input className="input" type="password" name="password" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your password"></input><br></br>
-                    <button className="button signup-button" onClick={(e) => this.signupHandler(e)}>Signup</button>
+                {/* <div>
+                    {msg}
+                </div> */}
+
+                <form onSubmit={(e) => this.signupHandler(e)}>
+
+                    {/* <input className="input" type="text" name="username" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your username"></input><br></br>
+                    <input className="input" type="email" name="email" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your email"></input><br></br> */}
+                    {/* <input className="input" type="password" name="password" onChange={(e) => this.getInputChange(e)} required placeholder="Enter your password"></input><br></br> */}
+                    <input className="input" type="text" name="username" onInput={(e) => this.getUsernameChange(e)} required placeholder="Enter your username"></input><br></br>
+                    <input className="input" type="email" name="email" onInput={(e) => this.getEmailChange(e)} required placeholder="Enter your email"></input><br></br>
+                    <input className="input" type="password" name="password" onInput={(e) => this.getPasswordChange(e)} required placeholder="Enter your password"></input><br></br>
+                    {/* <button className="button signup-button" onClick={(e) => this.signupHandler(e)}>Signup</button> */}
+                    {!this.state.passwordIsValid && <span>Password is not valid</span>}<br></br>
+                    <button className="button signup-button" type="submit">Signup</button>
+
                 </form >
+
+
             </>
         )
     }

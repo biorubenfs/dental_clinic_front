@@ -69,22 +69,14 @@ class Login extends Component {
                 </div>
                 <form>
                     <input
-                        className="input input-email"
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        required
-                        onChange={(e) => this.getEmailChange(e)}
+                        className="input input-email" type="email" name="email"
+                        placeholder="Enter your email" required onChange={(e) => this.getEmailChange(e)}
                     ></input>
                     <br></br>
 
                     <input
-                        className="input input-password"
-                        type="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        required
-                        onChange={(e) => this.getPasswordChange(e)}
+                        className="input input-password" type="password" name="password"
+                        placeholder="Enter your password" required onChange={(e) => this.getPasswordChange(e)}
                     ></input>
                     <br></br>
                     <button className="button login-button" onClick={(e) => this.handlerFetch(e)}>Login</button>
