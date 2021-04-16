@@ -5,19 +5,9 @@ import fetchAppointments from '../../services/fetchAppointments';
 class NewAppointment extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            date: null,
-            userId: null,
-            doctorId: null,
-            message: null
-        };
+        this.state = { message: null };
     }
 
-
-    inputHandler(event) {
-        const attribute = event.target.name;
-        this.setState({ [attribute]: event.target.value });
-    }
 
     async fetchHandler(event) {
         event.preventDefault();
@@ -25,23 +15,34 @@ class NewAppointment extends Component {
         const userDataLocal = localStorage.getItem('userData')
         const userData = JSON.parse(userDataLocal);
 
-        if (!this.state.date || !this.state.userId || !this.state.doctorId) {
+        const date = event.target[0].value;
+        const userId = event.target[1].value;
+        const doctorId = event.target[2].value;
+
+        if (!date || !userId || !doctorId) {
 
             return this.setState({ message: 0 })
         };
 
         try {
 
-            const res = await fetchAppointments.newAppointment(userData.token, this.state.date, this.state.userId, this.state.doctorId);
-            const error = await res.json()
+            const res = await fetchAppointments.newAppointment(userData.token, date, userId, doctorId);
+
 
             if (res.status === 201) {
-                this.setState({ message: 2 })
-            } else if (error.code === 3) {
-                this.setState({ message: error.code });
-            } else if (error.code === 4) {
-                this.setState({ message: error.code });
+                this.setState({ message: 2 });
+            } else {
+                const error = await res.json()
+                if (error.code === 3) {
+                    this.setState({ message: error.code });
+                } else if (error.code === 4) {
+                    this.setState({ message: error.code });
+                } else {
+                    this.setState({ message: 5 })
+                }
             }
+
+
 
         } catch (e) {
             console.log(e)
@@ -70,6 +71,9 @@ class NewAppointment extends Component {
             case 4:
                 msg = <AppointmentMessage msg="Client already has an appointment at that time"></AppointmentMessage>;
                 break;
+            case 5:
+                msg = <AppointmentMessage msg="Please enter a registered client and doctor"></AppointmentMessage>;
+                break;
             default:
                 msg = null
         }
@@ -86,7 +90,7 @@ class NewAppointment extends Component {
                 <div>
                     New Appointment
                 </div>
-                <form className="appointForm"><br></br>
+                <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
                     <label htmlFor="date">Date</label>
                     <input
                         className="input"
@@ -94,7 +98,6 @@ class NewAppointment extends Component {
                         name="date"
                         min={dateNow}
                         required
-                        onChange={(e) => this.inputHandler(e)}
                     ></input><br></br>
                     <label htmlFor="user">User ID</label>
                     <input
@@ -103,7 +106,6 @@ class NewAppointment extends Component {
                         min="2"
                         name="userId"
                         required
-                        onChange={(e) => this.inputHandler(e)}
                     ></input><br></br>
                     <label htmlFor="doctor">Doctor ID</label>
                     <input
@@ -112,9 +114,8 @@ class NewAppointment extends Component {
                         min="1"
                         name="doctorId"
                         required
-                        onChange={(e) => this.inputHandler(e)}
                     ></input><br></br>
-                    <button className="button" type="button" onClick={(e) => this.fetchHandler(e)}>Submit</button>
+                    <button className="button" type="submit">Submit</button>
                 </form>
                 {msg}
             </>
