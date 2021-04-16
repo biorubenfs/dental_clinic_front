@@ -13,7 +13,7 @@ class NewAppointment extends Component {
     async fetchHandler(event) {
         event.preventDefault();
 
-        const userDataLocal = localStorage.getItem('userData')
+        const userDataLocal = localStorage.getItem('userData');
         const userData = JSON.parse(userDataLocal);
 
         const date = event.target[0].value;
