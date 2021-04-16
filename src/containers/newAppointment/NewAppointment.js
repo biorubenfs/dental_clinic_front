@@ -26,18 +26,21 @@ class NewAppointment extends Component {
         const userData = JSON.parse(userDataLocal);
 
         if (!this.state.date || !this.state.userId || !this.state.doctorId) {
-            
+
             return this.setState({ message: 0 })
         };
 
         try {
 
             const res = await fetchAppointments.newAppointment(userData.token, this.state.date, this.state.userId, this.state.doctorId);
+            const error = await res.json()
 
             if (res.status === 201) {
                 this.setState({ message: 2 })
-            } else {
-                this.setState({ message:3 })
+            } else if (error.code === 3) {
+                this.setState({ message: error.code });
+            } else if (error.code === 4) {
+                this.setState({ message: error.code });
             }
 
         } catch (e) {
@@ -62,7 +65,10 @@ class NewAppointment extends Component {
                 msg = <AppointmentMessage msg="Appointment created"></AppointmentMessage>;
                 break;
             case 3:
-                msg = <AppointmentMessage msg="CLient or Doctor are busy at that time"></AppointmentMessage>;
+                msg = <AppointmentMessage msg="Doctor is busy at that time, please select a different time or doctor"></AppointmentMessage>;
+                break;
+            case 4:
+                msg = <AppointmentMessage msg="Client already has an appointment at that time"></AppointmentMessage>;
                 break;
             default:
                 msg = null
@@ -89,7 +95,7 @@ class NewAppointment extends Component {
                         min={dateNow}
                         required
                         onChange={(e) => this.inputHandler(e)}
-                    ></input>
+                    ></input><br></br>
                     <label htmlFor="user">User ID</label>
                     <input
                         className="input"
@@ -98,7 +104,7 @@ class NewAppointment extends Component {
                         name="userId"
                         required
                         onChange={(e) => this.inputHandler(e)}
-                    ></input>
+                    ></input><br></br>
                     <label htmlFor="doctor">Doctor ID</label>
                     <input
                         className="input"
@@ -107,7 +113,7 @@ class NewAppointment extends Component {
                         name="doctorId"
                         required
                         onChange={(e) => this.inputHandler(e)}
-                    ></input>
+                    ></input><br></br>
                     <button className="button" type="button" onClick={(e) => this.fetchHandler(e)}>Submit</button>
                 </form>
                 {msg}
