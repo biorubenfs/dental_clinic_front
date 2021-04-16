@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 import './App.css';
+import NewAppointment from './containers/newAppointment/NewAppointment';
 import Login from './containers/login/Login'
-import logo from './logo.png';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Login></Login>
+        {/* <Login></Login> */}
+        <NewAppointment></NewAppointment>
       </header>
     </div>
   );
