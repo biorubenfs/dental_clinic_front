@@ -1,7 +1,10 @@
 const fetchAppointments = {
 
-    newAppointment: async (token, date, user, doctor) => {
+    newAppointment: async (date, user, doctor) => {
         try {
+
+            const userDataLocal = localStorage.getItem('userData');
+            const userData = JSON.parse(userDataLocal);
 
             const body = {
                 "date": date,
@@ -11,7 +14,7 @@ const fetchAppointments = {
 
             const res = await fetch('http://localhost:3001/appointments/newApptts', {
                 method: 'POST',
-                headers: { "authentication": token , "Content-Type": "application/json"},
+                headers: { "authentication": userData.token, "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
 
@@ -21,13 +24,16 @@ const fetchAppointments = {
             console.log(e.message);
         }
     },
-    
-    appointmentStatus: async (token) => {
+
+    appointmentStatus: async () => {
+
+        const userDataLocal = localStorage.getItem('userData');
+        const userData = JSON.parse(userDataLocal);
 
         try {
             const res = await fetch('http://localhost:3001/appointments/appttsStts', {
                 method: 'GET',
-                headers: { "authentication": token }
+                headers: { "authentication": userData.token }
             });
 
             return res;
@@ -36,13 +42,17 @@ const fetchAppointments = {
             console.log(e.message);
         }
     },
-    
-    cancelAppointment: async (userId, token) => {
+
+    cancelAppointment: async (appointmentId) => {
 
         try {
-            const res = await fetch(`http://localhost:3001/appointments/appttsDlt/${userId}`, {
+
+            const userDataLocal = localStorage.getItem('userData');
+            const userData = JSON.parse(userDataLocal);
+
+            const res = await fetch(`http://localhost:3001/appointments/appttsDlt/${appointmentId}`, {
                 method: 'PATCH',
-                headers: { "authentication": token }
+                headers: { "authentication": userData.token }
             }
             );
 

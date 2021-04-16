@@ -5,41 +5,36 @@ import fetchAppointments from "../../services/fetchAppointments";
 
 const ViewAppointments = () => {
 
-    const [date, setDate] = useState(null);
-    const [status, setstatus] = useState(null);
-    const [client, setClient] = useState(null);
-    const [doctor, setdoctor] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [speciality, setSpeciality] = useState(null);
     const [error, setError] = useState(null);
-
-    const userDataLocal = localStorage.getItem('userData');
-    const userData = JSON.parse(userDataLocal);
+    const [results, setResults] = useState(null);
 
     const getAppointments = async () => {
 
         try {
-            const res = await fetchAppointments.appointmentStatus(userData.token);
+
+            const res = await fetchAppointments.appointmentStatus();
             const json = await res.json();
             const { rows } = json;
-            console.log(rows)
+
+            if (rows) {
+                setResults(rows);
+            }
+
         } catch (e) {
             console.log(e)
-            setError = 0
+            setError(0);
         }
     }
 
-    getAppointments();
-    
+    if (!results) {
+        getAppointments()
+    }
+    console.log(results)
+
     let msg;
 
-    switch (error) {
-        case 0:
+    if (error == 0) {
             msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
-            break;
-        default:
-            msg = null
-            break;
     }
 
     return (
@@ -50,6 +45,11 @@ const ViewAppointments = () => {
             </div>
             <AppointmentCard date="04-16-2021" status="pending" clientName="Client1"
                 doctorName="Doctor1" email="client@client.com" speciality="All"></AppointmentCard>
+            {results && <div>
+                {results.map(element => <AppointmentCard key={results.indexOf(element)} date={element.date} status={element.status}
+                    clientName={element.User.name} doctorName={element.Doctor.name}
+                    email={element.User.email} speciality={element.Doctor.speciality}></AppointmentCard>)}
+            </div>}
         </>
     );
 }

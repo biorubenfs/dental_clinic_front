@@ -13,16 +13,13 @@ class NewAppointment extends Component {
     async fetchHandler(event) {
         event.preventDefault();
 
-        const userDataLocal = localStorage.getItem('userData');
-        const userData = JSON.parse(userDataLocal);
-
         const date = event.target[0].value;
         const userId = event.target[1].value;
         const doctorId = event.target[2].value;
 
         try {
 
-            const res = await fetchAppointments.newAppointment(userData.token, date, userId, doctorId);
+            const res = await fetchAppointments.newAppointment(date, userId, doctorId);
 
 
             if (res.status === 201) {
