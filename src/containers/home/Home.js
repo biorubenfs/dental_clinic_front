@@ -1,6 +1,6 @@
 import Covid from '../../components/covid/Covid'
 import orthodontics from '../../img/orthodontics.jpg'
-import Card from '../../components/card/Card';
+import Card from '../../components/homeCard/HomeCard';
 import './Home.css'
 import Navbar from '../../components/navbar/Navbar';
 
