@@ -9,8 +9,8 @@ const ViewAppointments = () => {
     const [error, setError] = useState(null);
     const [results, setResults] = useState(null);
     const [count, setCount] = useState(null);
-
-    console.log(results)
+    const [startSkip, setStartSkip] = useState(0);
+    const [endSkip, setEndtSkip] = useState(10);
 
     const getAppointments = async () => {
 
@@ -19,9 +19,11 @@ const ViewAppointments = () => {
             const json = await res.json();
             const { rows } = json;
             const { count } = json;
+            
+            const tenResults = rows.slice(startSkip , endSkip);
 
             if (rows) {
-                setResults(rows);
+                setResults(tenResults);
                 setCount(Math.ceil(count / 10));
             }
 
@@ -32,7 +34,7 @@ const ViewAppointments = () => {
     }
 
     if (!results) {
-        getAppointments()
+        getAppointments();
     }
 
     let msg;
@@ -41,10 +43,22 @@ const ViewAppointments = () => {
         msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
     }
 
+    const nextPage = () => {
+        setStartSkip(startSkip +10);
+        setEndtSkip(endSkip +10);
+        getAppointments();
+    }
+
+    const previousPage = () => {
+        setStartSkip(startSkip -10);
+        setEndtSkip(endSkip -10);
+        getAppointments();
+    }
+
     return (
         <>
             <div className="appointments">
-                Appointments
+                <strong>Appointments</strong>
             
                 <div className="appointments-grid">
                     {msg}
@@ -55,9 +69,9 @@ const ViewAppointments = () => {
                     </div>}
                 </div>
                 <div className="pagination">
-                    <a href="http://localhost:3000/">prev</a>
+                    <a href="#" onClick={() => previousPage()}>prev</a>
                     <div>page 1 of {count}</div>
-                    <a href="http://localhost:3000/">next</a>
+                    <a href="#" onClick={() => nextPage()}>next</a>
                 </div>
             </div>
         </>
