@@ -1,4 +1,29 @@
+.new-appointment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+}
+
 .appointForm {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.short-input {
+    padding-left: 1rem;
+    border-radius: 0.6rem;
+    width: 5.5em;
+}
+
+.date-input {
+    width: 11em;
+    padding-left: 1rem;
+    border-radius: 0.6rem;
+}
+
+.sub-btn {
+    width: 5em;
+    margin-bottom: 1em;
 }

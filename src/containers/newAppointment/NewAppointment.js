@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import AppointmentMessage from '../../components/appointmentMessage/AppointmentMessage';
 import fetchAppointments from '../../services/fetchAppointments';
 import './NewAppointment.css'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class NewAppointment extends Component {
     constructor(props) {
         super(props);
-        this.state = { message: null };
+        this.state = {
+            message: null,
+            date: new Date()
+        };
     }
-
 
     async fetchHandler(event) {
         event.preventDefault();
 
-        const date = event.target[0].value;
         const userId = event.target[1].value;
         const doctorId = event.target[2].value;
 
         try {
 
-            const res = await fetchAppointments.newAppointment(date, userId, doctorId);
+            const res = await fetchAppointments.newAppointment(this.state.date, userId, doctorId);
 
 
             if (res.status === 201) {
@@ -43,6 +46,9 @@ class NewAppointment extends Component {
     }
 
     render() {
+        const thisDate = this.state.date.toDateString()
+
+        const thisTime = this.state.date.toLocaleTimeString()
 
         let msg;
 
@@ -54,7 +60,7 @@ class NewAppointment extends Component {
                 msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>;
                 break;
             case 2:
-                msg = <AppointmentMessage msg="Appointment created"></AppointmentMessage>;
+                msg = <AppointmentMessage msg="Appointment created on ">{`${thisDate} at ${thisTime}`}</AppointmentMessage>;
                 break;
             case 3:
                 msg = <AppointmentMessage msg="Doctor is busy at that time, please select a different time or doctor"></AppointmentMessage>;
@@ -69,49 +75,40 @@ class NewAppointment extends Component {
                 msg = null
         }
 
-
-        let date = new Date();
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        const dateNow = (`${year}-${month}-${day}`);
-
         return (
             <>
-                <div>
+                <div className="new-appointment">
                     New Appointment
+                    <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
+                        <label htmlFor="date"></label>
+                            <DatePicker className="date-input" selected={this.state.date} 
+                            onChange={date => {
+                                this.setState({ date: date });
+                                const startDate = this.state.date
+                            }} 
+                            minDate={Date.now()} showTimeSelect dateFormat="Pp"/><br></br>
+                        <label htmlFor="user"></label>
+                        <input
+                            className="short-input"
+                            type="number"
+                            min="2"
+                            name="userId"
+                            required
+                            placeholder="User ID"
+                        ></input><br></br>
+                        <label htmlFor="doctor"></label>
+                        <input
+                            className="short-input"
+                            type="number"
+                            min="1"
+                            name="doctorId"
+                            required
+                            placeholder="Doctor ID"
+                        ></input><br></br>
+                        <button className="button sub-btn" type="submit">Submit</button>
+                    </form>
+                    {msg}
                 </div>
-                <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
-                    <label htmlFor="date"></label>
-                    <input
-                        className="input"
-                        type="datetime-local"
-                        name="date"
-                        min={dateNow}
-                        required
-                        placeholder="Date"
-                    ></input><br></br>
-                    <label htmlFor="user"></label>
-                    <input
-                        className="input"
-                        type="number"
-                        min="2"
-                        name="userId"
-                        required
-                        placeholder="User ID"
-                    ></input><br></br>
-                    <label htmlFor="doctor"></label>
-                    <input
-                        className="input"
-                        type="number"
-                        min="1"
-                        name="doctorId"
-                        required
-                        placeholder="Doctor ID"
-                    ></input><br></br>
-                    <button className="button" type="submit">Submit</button>
-                </form>
-                {msg}
             </>
         );
     }

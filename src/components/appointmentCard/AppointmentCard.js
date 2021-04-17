@@ -19,7 +19,6 @@ const AppointmentCard = (props) => {
                     <div className="field">
                         <strong>Speciality</strong>
                     </div>                    
-                    
                 </div>
                 <div className="column">
                 <div className="field">
