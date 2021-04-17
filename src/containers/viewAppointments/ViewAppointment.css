@@ -21,6 +21,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
+    width: 12em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .pagination > a:link, .pagination > a:visited {

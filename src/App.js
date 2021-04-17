@@ -20,10 +20,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {/* <Home></Home> */}
         {/* <NewAppointment></NewAppointment> */}
-        {/*<ViewAppointments></ViewAppointments>*/}
+        {/* <ViewAppointments></ViewAppointments> */}
         {/* <Signup></Signup> */}
-        {/*<ViewAppointments></ViewAppointments>*/}
-        {/*<Signup></Signup>*/}
         {/* <Login></Login> */}
       </body>
       <footer className="App-footer">
