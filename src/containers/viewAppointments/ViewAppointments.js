@@ -8,10 +8,11 @@ const ViewAppointments = () => {
     const [error, setError] = useState(null);
     const [results, setResults] = useState(null);
 
+    console.log(results)
+
     const getAppointments = async () => {
 
         try {
-
             const res = await fetchAppointments.appointmentStatus();
             const json = await res.json();
             const { rows } = json;
@@ -29,7 +30,6 @@ const ViewAppointments = () => {
     if (!results) {
         getAppointments()
     }
-    console.log(results)
 
     let msg;
 
@@ -39,12 +39,10 @@ const ViewAppointments = () => {
 
     return (
         <>
-            {msg}
             <div>
                 Appointments
             </div>
-            <AppointmentCard date="04-16-2021" status="pending" clientName="Client1"
-                doctorName="Doctor1" email="client@client.com" speciality="All"></AppointmentCard>
+            {msg}            
             {results && <div>
                 {results.map(element => <AppointmentCard key={results.indexOf(element)} date={element.date} status={element.status}
                     clientName={element.User.name} doctorName={element.Doctor.name}
