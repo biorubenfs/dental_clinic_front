@@ -15,14 +15,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 8vh;
+  /* background-color: #282c34; */
+  /* min-height: 8vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* font-size: calc(10px + 2vmin); */
+  /* color: white; */
 }
 
 /* Keyframe del logo */
@@ -71,12 +71,20 @@
 /* Footer */
 
 .App-footer {
-  background-color: #282c34;
-  min-height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* background-color: #282c34; */
+  /* display: flex; */
+  /* flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  /* min-height: 6vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center; */
+  /* justify-content: center; */
+  /* font-size: calc(10px + 2vmin); */
+  /* color: white; */
 }
