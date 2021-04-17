@@ -2,6 +2,7 @@
 import './App.css';
 import NewAppointment from './containers/newAppointment/NewAppointment';
 import Login from './containers/login/Login'
+import ViewAppointments from './containers/viewAppointments/ViewAppointments';
 import Signup from './containers/signup/Signup';
 import logo from './logo.png';
 
@@ -13,6 +14,7 @@ function App() {
       <body className="App-body">
         <img src={logo} className="App-logo" alt="logo" />
         <NewAppointment></NewAppointment>
+        {/*<ViewAppointments></ViewAppointments>*/}
         <Signup></Signup>
         {/* <Login></Login> */}
       </body>

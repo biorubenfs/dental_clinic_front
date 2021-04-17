@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    color: black;
+    width: 30em;
+    border: 0.1em solid black;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    border: 0.1em solid black;
+    padding: 1em;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    border: 0.1em solid black;
+    padding: 1em;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border: 0.1em solid black;
+    padding: 1em;
+}
