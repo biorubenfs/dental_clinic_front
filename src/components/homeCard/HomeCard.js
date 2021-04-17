@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Card.css'
+import './HomeCard.css'
 
 class Card extends Component {
 
@@ -12,11 +12,23 @@ class Card extends Component {
         }
     }
     render() {
+
         return (
-            <div className='cards'>
-                <img src={this.state.img} alt='orthodontics'></img>
-                <h3>{this.state.title}</h3>
-                <span className='text'>{this.state.text}</span>
+            <div className="cards">
+                <div className="picture">
+                    <img src={this.state.img} alt="treatment picture"></img>
+                </div>
+                <div className="bottom-half">
+                    <a className="card-button" href="http://localhost:3000/">
+                        I Want It
+                    </a>
+                    <div className="title">
+                        <h3>{this.state.title}</h3>
+                    </div>
+                    <div className="description">
+                        <span>{this.state.text}</span>
+                    </div>
+                </div>
             </div>
         )
     }
