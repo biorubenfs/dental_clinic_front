@@ -1,7 +1,26 @@
+.covid-alert {
+  margin: auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  border: 0.2rem solid black;
+}
+
 .cards-grid {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+@media (min-width: 720px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (min-width: 1366px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, auto);
+  }
 }

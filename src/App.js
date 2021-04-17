@@ -18,10 +18,11 @@ function App() {
       </header>
       <body className="App-body">
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <Home></Home> */}
+
+        <Home></Home>
         {/* <NewAppointment></NewAppointment> */}
         {/*<ViewAppointments></ViewAppointments>*/}
-        <Signup></Signup>
+        {/* <Signup></Signup> */}
         {/* <Login></Login> */}
       </body>
       <footer className="App-footer">

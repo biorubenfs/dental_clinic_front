@@ -1,54 +1,65 @@
 .cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1.5em;
-    width: 20em;
-    background-color: white;
-    box-shadow: 0.2em 0.2em #282c34;
-    border-radius: 0.75em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5em;
+  width: 20em;
+  background-color: white;
+  box-shadow: 0.2em 0.2em #282c34;
+  border-radius: 0.75em;
+  padding-bottom: 1rem;
 }
 
 .picture {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .picture > img {
-    max-width: 100%;
-    max-height: 100%;
-    clip-path: circle(95% at 50% -20%);
+  max-width: 100%;
+  max-height: 100%;
+  clip-path: circle(95% at 50% -20%);
 }
 
 .bottom-half {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 1em;
-    padding-bottom: 1em;
-    padding-right: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
 }
 
-.card-button:link, .card-button:visited {
-    z-index: 1;
-    color: white;
-    background-color: #282c34;
-    width: 10em;
-    margin-top: -1em;
-    border-radius: 0.3em;
-    cursor: pointer;
-    text-decoration: none;
+.card-button {
+  border: 0.1rem solid grey;
+  padding: 0.4rem 2rem;
+  cursor: pointer;
+  border-radius: 0.4rem;
 }
 
-.card-button:hover, .card-button:active {
-    background-color: gray;
+.card-button:link,
+.card-button:visited {
+  z-index: 1;
+  color: white;
+  background-color: #282c34;
+  width: 10em;
+  margin-top: -1em;
+  border-radius: 0.3em;
+  text-decoration: none;
+}
+
+.card-button:hover,
+.card-button:active {
+  background-color: #282c34;
+  color: white;
+  transition: 0.4s;
 }
 
 .title {
-    color: #282c34;
+  color: #282c34;
 }
 
 .description > span {
-    font-size: 1em;
-    color: #282c34;
+  font-size: 1em;
+  color: #282c34;
 }
