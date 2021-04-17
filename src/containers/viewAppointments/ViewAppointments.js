@@ -37,7 +37,7 @@ const ViewAppointments = () => {
 
     let msg;
 
-    if (error == 0) {
+    if (error === 0) {
         msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
     }
 

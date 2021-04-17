@@ -3,6 +3,7 @@ const AppointmentMessage = (props) => {
     return (
         <h4>
             {props.msg}
+            {props.children}
         </h4>
     )
 }
