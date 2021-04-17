@@ -16,7 +16,7 @@
     width: 50%;
 }
 
-.row {
+.row, .pivot {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,13 +30,21 @@
     padding: 1em;
 }
 
+.id-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;   
+    border-top: 0.15em solid gray;
+    padding-left: 1.5em;
+}
+
 .appointment-id {
     display:flex;
     justify-content: center;
     align-items: center;
     width: 10%;
-    padding: 1em;
-    border-top: 0.15em solid gray;
+    padding-left: 2em;
+
 }
 
 .date {
@@ -80,4 +88,91 @@
 
 .cancel-btn:hover, .cancel-btn:active {
     background-color: gray;
+}
+
+@media (min-width: 1366px) {
+    .card {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 70vw;
+    }
+    
+    .column {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .row {
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .field {
+        flex-direction: column;
+    }
+
+    .pivot {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .appointment-id, .date, .status, .id-label {
+        border: none;
+    }
+
+    .appointment-id {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        justify-content: flex-end;
+        padding-right: 1em;
+    }
+
+    .id-label {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        justify-content: flex-end;
+        margin: 0em;
+        padding: 0em;        
+        padding-right: 0.75em;
+    }
+
+    .date {
+        display: flex;
+        flex-direction: row;
+        width: 15em;
+    }
+
+    .status {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field.client {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.email {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.doctor {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.speciality {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
 }
