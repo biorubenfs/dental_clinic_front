@@ -82,29 +82,32 @@ class NewAppointment extends Component {
                     New Appointment
                 </div>
                 <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
-                    <label htmlFor="date">Date</label>
+                    <label htmlFor="date"></label>
                     <input
                         className="input"
                         type="datetime-local"
                         name="date"
                         min={dateNow}
                         required
+                        placeholder="Date"
                     ></input><br></br>
-                    <label htmlFor="user">User ID</label>
+                    <label htmlFor="user"></label>
                     <input
                         className="input"
                         type="number"
                         min="2"
                         name="userId"
                         required
+                        placeholder="User ID"
                     ></input><br></br>
-                    <label htmlFor="doctor">Doctor ID</label>
+                    <label htmlFor="doctor"></label>
                     <input
                         className="input"
                         type="number"
                         min="1"
                         name="doctorId"
                         required
+                        placeholder="Doctor ID"
                     ></input><br></br>
                     <button className="button" type="submit">Submit</button>
                 </form>
