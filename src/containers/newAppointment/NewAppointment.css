@@ -1,0 +1,4 @@
+.appointForm {
+    display: flex;
+    flex-direction: column;
+}
