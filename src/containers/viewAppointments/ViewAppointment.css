@@ -1,0 +1,28 @@
+.appointments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appointments-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.appointment-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pagination > a:link, .pagination > a:visited {
+    color: lightgray;
+}

@@ -21,7 +21,9 @@ function App() {
         {/* <Home></Home> */}
         {/* <NewAppointment></NewAppointment> */}
         {/*<ViewAppointments></ViewAppointments>*/}
-        <Signup></Signup>
+        {/* <Signup></Signup> */}
+        {/*<ViewAppointments></ViewAppointments>*/}
+        {/*<Signup></Signup>*/}
         {/* <Login></Login> */}
       </body>
       <footer className="App-footer">
