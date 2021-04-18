@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: larger;
+    font-size: x-large;
 }
 
 .appointForm {
@@ -15,12 +15,16 @@
     padding-left: 1rem;
     border-radius: 0.6rem;
     width: 5.5em;
+    margin: 0.6rem 0rem;
+    height: 1.6rem;
 }
 
 .date-input {
     width: 11em;
     padding-left: 1rem;
     border-radius: 0.6rem;
+    margin: 0.6rem 0rem;
+    height: 1.6rem;
 }
 
 .sub-btn {
