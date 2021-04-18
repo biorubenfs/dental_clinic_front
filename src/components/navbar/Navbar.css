@@ -8,6 +8,13 @@
   justify-content: center;
 }
 
+@media (min-width: 720px) {
+  .navbar-bg {
+    position: fixed;
+    z-index: 99;
+  }
+}
+
 .navbar {
   width: 70%;
   height: 100%;
@@ -21,6 +28,8 @@
   .navbar {
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    z-index: 99;
   }
 }
 

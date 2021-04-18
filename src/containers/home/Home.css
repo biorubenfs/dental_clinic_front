@@ -4,6 +4,9 @@
   display: flex;
   justify-content: center;
   border: 0.2rem solid black;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0.8rem 0.4rem 0.4rem black;
 }
 
 .cards-grid {

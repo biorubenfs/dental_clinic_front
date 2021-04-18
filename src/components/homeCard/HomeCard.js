@@ -29,11 +29,6 @@ class Card extends Component {
                 <button className="card-button">
                     More info
                 </button>
-
-
-                {/* <button className="button card-button" href="http://localhost:3000/">
-                    More info
-                </button> */}
             </div>
         )
     }

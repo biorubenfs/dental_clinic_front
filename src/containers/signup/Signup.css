@@ -2,7 +2,8 @@
   width: 6rem;
   height: 2rem;
   color: black;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  margin-bottom: 2rem;
 }
 
 .input {
