@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.appointments > strong {
+    font-size: x-large;
+}
+
 .appointments-grid {
     display: flex;
     flex-direction: column;

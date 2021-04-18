@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AlertPopUp from "../../components/alertPopUp/AlertPopUp";
 import AppointmentCard from "../../components/appointmentCard/AppointmentCard";
 import AppointmentMessage from "../../components/appointmentMessage/AppointmentMessage";
 import fetchAppointments from "../../services/fetchAppointments";
@@ -9,8 +10,9 @@ const ViewAppointments = () => {
     const [error, setError] = useState(null);
     const [results, setResults] = useState(null);
     const [count, setCount] = useState(null);
-
-    console.log(results)
+    const [startSkip, setStartSkip] = useState(0);
+    const [endSkip, setEndtSkip] = useState(10);
+    const [alert, setAlert] = useState(false);
 
     const getAppointments = async () => {
 
@@ -19,11 +21,14 @@ const ViewAppointments = () => {
             const json = await res.json();
             const { rows } = json;
             const { count } = json;
+            
+            const tenResults = rows.slice(startSkip , endSkip);
 
             if (rows) {
-                setResults(rows);
+                setResults(tenResults);
                 setCount(Math.ceil(count / 10));
             }
+            console.log(alert)
 
         } catch (e) {
             console.log(e)
@@ -32,7 +37,7 @@ const ViewAppointments = () => {
     }
 
     if (!results) {
-        getAppointments()
+        getAppointments();
     }
 
     let msg;
@@ -41,23 +46,43 @@ const ViewAppointments = () => {
         msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
     }
 
-    return (
+    const nextPage = () => {
+        setStartSkip(startSkip +10);
+        setEndtSkip(endSkip +10);
+        getAppointments();
+    }
+
+    const previousPage = () => {
+        setStartSkip(startSkip -10);
+        setEndtSkip(endSkip -10);
+        getAppointments();
+    }
+
+    const cancelBtn = () => {
+        setAlert(true);
+    }
+
+    const cancelDate = (id) => {
+
+    }
+
+    return (            
         <>
             <div className="appointments">
-                Appointments
-            
+                <strong>Appointments</strong>
+                {alert && <div><AlertPopUp cancel={() => cancelDate()} cancelNot={() => setAlert(false)}/></div>}            
                 <div className="appointments-grid">
                     {msg}
                     {results && <div className="appointment-cards">
                         {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id} date={element.date} status={element.status}
                             clientName={element.User.name} doctorName={element.Doctor.name}
-                            email={element.User.email} speciality={element.Doctor.speciality}></AppointmentCard>)}
+                            email={element.User.email} speciality={element.Doctor.speciality} cancelBtn={() => cancelBtn()}></AppointmentCard>)}
                     </div>}
                 </div>
                 <div className="pagination">
-                    <a href="http://localhost:3000/">prev</a>
+                    <a href="#" onClick={() => previousPage()}>prev</a>
                     <div>page 1 of {count}</div>
-                    <a href="http://localhost:3000/">next</a>
+                    <a href="#" onClick={() => nextPage()}>next</a>
                 </div>
             </div>
         </>
