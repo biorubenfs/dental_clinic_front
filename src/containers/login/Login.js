@@ -67,7 +67,7 @@ class Login extends Component {
                 <div>
                     {msg}
                 </div>
-                <form>
+                <form onSubmit={(e) => this.handlerFetch(e)}>
                     <input
                         className="input input-email" type="email" name="email"
                         placeholder="Enter your email" required onChange={(e) => this.getEmailChange(e)}
@@ -79,7 +79,9 @@ class Login extends Component {
                         placeholder="Enter your password" required onChange={(e) => this.getPasswordChange(e)}
                     ></input>
                     <br></br>
-                    <button className="button login-button" onClick={(e) => this.handlerFetch(e)}>Login</button>
+                    <button className="button login-button" type="submit">Login</button>
+
+                    {/* <button className="button login-button" onClick={(e) => this.handlerFetch(e)}>Login</button> */}
                 </form>
             </>
         );
