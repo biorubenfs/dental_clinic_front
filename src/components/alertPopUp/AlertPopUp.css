@@ -1,0 +1,44 @@
+.alert-pop-up {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    color: black;
+    width: 15em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0.2em 0.2em #282c34, -0.2em -0.2em gray;
+    border-radius: 0.5em;
+    position: fixed;
+    top: 30vh;
+}
+
+.ask-msg {
+    padding: 1em;
+}
+
+.confirm-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 1em;
+}
+
+.yes-btn:link, .yes-btn:visited, .no-btn:link, .no-btn:visited {    
+    background-color: #282c34;    
+    color: white;
+    border-radius: 0.3em;
+    cursor: pointer;
+    text-decoration: none;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.yes-btn:hover, .yes-btn:active {
+    background-color: tomato;
+}
+
+.no-btn:hover, .no-btn:active {
+    background-color: gray;
+}

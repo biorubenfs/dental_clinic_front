@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AlertPopUp from "../../components/alertPopUp/AlertPopUp";
 import AppointmentCard from "../../components/appointmentCard/AppointmentCard";
 import AppointmentMessage from "../../components/appointmentMessage/AppointmentMessage";
 import fetchAppointments from "../../services/fetchAppointments";
@@ -11,6 +12,7 @@ const ViewAppointments = () => {
     const [count, setCount] = useState(null);
     const [startSkip, setStartSkip] = useState(0);
     const [endSkip, setEndtSkip] = useState(10);
+    const [alert, setAlert] = useState(false);
 
     const getAppointments = async () => {
 
@@ -26,6 +28,7 @@ const ViewAppointments = () => {
                 setResults(tenResults);
                 setCount(Math.ceil(count / 10));
             }
+            console.log(alert)
 
         } catch (e) {
             console.log(e)
@@ -55,17 +58,25 @@ const ViewAppointments = () => {
         getAppointments();
     }
 
-    return (
+    const cancelBtn = () => {
+        setAlert(true);
+    }
+
+    const cancelDate = (id) => {
+
+    }
+
+    return (            
         <>
             <div className="appointments">
                 <strong>Appointments</strong>
-            
+                {alert && <div><AlertPopUp cancel={() => cancelDate()} cancelNot={() => setAlert(false)}/></div>}            
                 <div className="appointments-grid">
                     {msg}
                     {results && <div className="appointment-cards">
                         {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id} date={element.date} status={element.status}
                             clientName={element.User.name} doctorName={element.Doctor.name}
-                            email={element.User.email} speciality={element.Doctor.speciality}></AppointmentCard>)}
+                            email={element.User.email} speciality={element.Doctor.speciality} cancelBtn={() => cancelBtn()}></AppointmentCard>)}
                     </div>}
                 </div>
                 <div className="pagination">
