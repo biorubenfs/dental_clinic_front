@@ -8,6 +8,7 @@ import Signup from './containers/signup/Signup';
 import logo from './logo.png';
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
+import Dashboard from './containers/dashboard/Dashboard';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         {/* <ViewAppointments></ViewAppointments> */}
         {/* <Signup></Signup> */}
         {/* <Login></Login> */}
+        <Dashboard></Dashboard>
       </body>
       <footer className="App-footer">
         <Footer></Footer>
