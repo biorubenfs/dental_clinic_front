@@ -19,9 +19,6 @@ class Card extends Component {
                     <img src={this.state.img} alt="treatment picture"></img>
                 </div>
                 <div className="bottom-half">
-                    <a className="card-button" href="http://localhost:3000/">
-                        I Want It
-                    </a>
                     <div className="title">
                         <h3>{this.state.title}</h3>
                     </div>
@@ -29,6 +26,14 @@ class Card extends Component {
                         <span>{this.state.text}</span>
                     </div>
                 </div>
+                <button className="card-button">
+                    More info
+                </button>
+
+
+                {/* <button className="button card-button" href="http://localhost:3000/">
+                    More info
+                </button> */}
             </div>
         )
     }

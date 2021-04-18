@@ -1,7 +1,7 @@
 .footer-bg {
   padding-top: 1rem;
   background-color: #282c34;
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 6vh;
   display: flex;
   align-items: center;

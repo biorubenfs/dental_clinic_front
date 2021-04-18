@@ -15,14 +15,11 @@
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  /* min-height: 8vh; */
+  min-height: 6vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
 }
 
 /* Keyframe del logo */
@@ -39,12 +36,14 @@
 /* Body */
 
 .App-body {
-  min-height: 84vh;
+  min-width: 100%;
+  min-height: 88vh;
   color: white;
   background-image: url(./banner.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin: auto;
 }
 
 /* Buttons */
@@ -75,16 +74,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 6vh;
   /* background-color: #282c34; */
   /* display: flex; */
   /* flex-direction: column;
   align-items: center;
   justify-content: center; */
-  /* min-height: 6vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center; */
-  /* justify-content: center; */
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
 }
