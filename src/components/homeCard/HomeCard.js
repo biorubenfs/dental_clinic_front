@@ -1,37 +1,25 @@
-import React, { Component } from 'react';
 import './HomeCard.css'
 
-class Card extends Component {
+const Card = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            img: props.img,
-            title: props.title,
-            text: props.text
-        }
-    }
-    render() {
-
-        return (
-            <div className="cards">
-                <div className="picture">
-                    <img src={this.state.img} alt="treatment picture"></img>
-                </div>
-                <div className="bottom-half">
-                    <div className="title">
-                        <h3>{this.state.title}</h3>
-                    </div>
-                    <div className="description">
-                        <span>{this.state.text}</span>
-                    </div>
-                </div>
-                <button className="card-button">
-                    More info
-                </button>
+    return (
+        <div className="cards">
+            <div className="picture">
+                <img src={props.img} alt="treatment"></img>
             </div>
-        )
-    }
+            <div className="bottom-half">
+                <div className="title">
+                    <h3>{props.title}</h3>
+                </div>
+                <div className="description">
+                    <span>{props.text}</span>
+                </div>
+            </div>
+            <button className="card-button">
+                More info
+            </button>
+        </div>
+    )
 
 }
 
