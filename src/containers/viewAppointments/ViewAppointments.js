@@ -13,6 +13,7 @@ const ViewAppointments = () => {
     const [startSkip, setStartSkip] = useState(0);
     const [endSkip, setEndtSkip] = useState(10);
     const [alert, setAlert] = useState(false);
+    const [cancelId, setCancelId] = useState(null);
 
     useEffect(() => {
         getAppointments();
@@ -32,7 +33,6 @@ const ViewAppointments = () => {
             if (rows) {
                 setResults(tenResults);
                 setCount(Math.ceil(count / 10));
-                console.log('log')
             }
 
         } catch (e) {
@@ -59,12 +59,9 @@ const ViewAppointments = () => {
         getAppointments();
     }
 
-    const cancelBtn = () => {
-        setAlert(true);
-    }
-
-    const cancelDate = (id) => {
-
+    const cancelDate = async () => {
+        await fetchAppointments.cancelAppointment(cancelId)
+        setAlert(false);
     }
 
     return (
@@ -78,7 +75,11 @@ const ViewAppointments = () => {
                         {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id}
                             date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()}
                             status={element.status} clientName={element.User.name} doctorName={element.Doctor.name}
-                            email={element.User.email} speciality={element.Doctor.speciality} cancelBtn={() => cancelBtn()}></AppointmentCard>)}
+                            email={element.User.email} speciality={element.Doctor.speciality} 
+                            cancelBtn={() => {
+                                setAlert(true);
+                                setCancelId(element.id);
+                            }}></AppointmentCard>)}
                     </div>}
                 </div>
                 <div className="pagination">
