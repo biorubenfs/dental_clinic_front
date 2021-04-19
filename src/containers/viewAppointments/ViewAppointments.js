@@ -28,7 +28,6 @@ const ViewAppointments = () => {
                 setResults(tenResults);
                 setCount(Math.ceil(count / 10));
             }
-            console.log(alert)
 
         } catch (e) {
             console.log(e)
