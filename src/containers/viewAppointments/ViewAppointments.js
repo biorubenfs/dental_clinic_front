@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import AlertPopUp from "../../components/alertPopUp/AlertPopUp";
 import AppointmentCard from "../../components/appointmentCard/AppointmentCard";
 import AppointmentMessage from "../../components/appointmentMessage/AppointmentMessage";
@@ -14,6 +14,11 @@ const ViewAppointments = () => {
     const [endSkip, setEndtSkip] = useState(10);
     const [alert, setAlert] = useState(false);
 
+    useEffect(() =>{
+        getAppointments();
+    }, []);
+
+
     const getAppointments = async () => {
 
         try {
@@ -27,17 +32,13 @@ const ViewAppointments = () => {
             if (rows) {
                 setResults(tenResults);
                 setCount(Math.ceil(count / 10));
+                console.log('log')
             }
-            console.log(alert)
 
         } catch (e) {
             console.log(e)
             setError(0);
         }
-    }
-
-    if (!results) {
-        getAppointments();
     }
 
     let msg;
@@ -74,7 +75,7 @@ const ViewAppointments = () => {
                 <div className="appointments-grid">
                     {msg}
                     {results && <div className="appointment-cards">
-                        {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id} date={element.date} status={element.status}
+                        {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id} date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()} status={element.status}
                             clientName={element.User.name} doctorName={element.Doctor.name}
                             email={element.User.email} speciality={element.Doctor.speciality} cancelBtn={() => cancelBtn()}></AppointmentCard>)}
                     </div>}
