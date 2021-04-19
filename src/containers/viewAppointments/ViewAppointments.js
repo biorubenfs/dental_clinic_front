@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AlertPopUp from "../../components/alertPopUp/AlertPopUp";
 import AppointmentCard from "../../components/appointmentCard/AppointmentCard";
 import AppointmentMessage from "../../components/appointmentMessage/AppointmentMessage";
@@ -14,7 +14,7 @@ const ViewAppointments = () => {
     const [endSkip, setEndtSkip] = useState(10);
     const [alert, setAlert] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
         getAppointments();
     }, []);
 
@@ -26,8 +26,8 @@ const ViewAppointments = () => {
             const json = await res.json();
             const { rows } = json;
             const { count } = json;
-            
-            const tenResults = rows.slice(startSkip , endSkip);
+
+            const tenResults = rows.slice(startSkip, endSkip);
 
             if (rows) {
                 setResults(tenResults);
@@ -48,14 +48,14 @@ const ViewAppointments = () => {
     }
 
     const nextPage = () => {
-        setStartSkip(startSkip +10);
-        setEndtSkip(endSkip +10);
+        setStartSkip(startSkip + 10);
+        setEndtSkip(endSkip + 10);
         getAppointments();
     }
 
     const previousPage = () => {
-        setStartSkip(startSkip -10);
-        setEndtSkip(endSkip -10);
+        setStartSkip(startSkip - 10);
+        setEndtSkip(endSkip - 10);
         getAppointments();
     }
 
@@ -67,16 +67,17 @@ const ViewAppointments = () => {
 
     }
 
-    return (            
+    return (
         <>
             <div className="appointments">
                 <strong>Appointments</strong>
-                {alert && <div><AlertPopUp cancel={() => cancelDate()} cancelNot={() => setAlert(false)}/></div>}            
+                {alert && <div><AlertPopUp cancel={() => cancelDate()} cancelNot={() => setAlert(false)} /></div>}
                 <div className="appointments-grid">
                     {msg}
                     {results && <div className="appointment-cards">
-                        {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id} date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()} status={element.status}
-                            clientName={element.User.name} doctorName={element.Doctor.name}
+                        {results.map(element => <AppointmentCard key={results.indexOf(element)} id={element.id}
+                            date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()}
+                            status={element.status} clientName={element.User.name} doctorName={element.Doctor.name}
                             email={element.User.email} speciality={element.Doctor.speciality} cancelBtn={() => cancelBtn()}></AppointmentCard>)}
                     </div>}
                 </div>

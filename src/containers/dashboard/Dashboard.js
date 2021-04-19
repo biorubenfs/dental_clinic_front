@@ -41,8 +41,10 @@ const Dashboard = () => {
             <div className="appointments-grid">
                 {msg}
                 {results && <div className="appointment-cards">
-                    {results.map(element => <DashboardCard key={results.indexOf(element)} doctorName={element.Doctor.name}
-                        speciality={element.Doctor.speciality} date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()} status={element.status}></DashboardCard>)}
+                    {results.map(element => <DashboardCard key={results.indexOf(element)}
+                        doctorName={element.Doctor.name} speciality={element.Doctor.speciality}
+                        date={new Date(element.date).toDateString() + ' ' + new Date(element.date).toLocaleTimeString()}
+                        status={element.status}></DashboardCard>)}
                 </div>}
             </div>
             <div className="pagination">
