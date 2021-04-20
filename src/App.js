@@ -7,29 +7,33 @@ import ViewAppointments from './containers/viewAppointments/ViewAppointments';
 import Signup from './containers/signup/Signup';
 import logo from './logo.png';
 import Footer from './components/footer/Footer';
-import Navbar from './components/navbar/Navbar';
 import Dashboard from './containers/dashboard/Dashboard';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import Navbar from './components/navbar/Navbar';
+import { useState } from 'react'
 
 function App() {
+
+  const [isLogged, setLogged] = useState(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar></Navbar>
+        <Navbar isLogged={isLogged} setLoggedApp={setLogged}></Navbar>
         <Switch>
-          <body className="App-body">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <Route path="/" component={Home} exact/>
-            <Route path="/new-appointment" component={NewAppointment}/>
-            <Route path="/view-appointments" component={ViewAppointments}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/dashboard" component={Dashboard}/>
-          </body>
+          <div className="App-body">
+            <img src={logo} className="App-logo" alt="logo" />
+            <Route path="/" component={Home} exact />
+            <Route path="/new-appointment" component={NewAppointment} />
+            <Route path="/view-appointments" component={ViewAppointments} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login">
+              <Login setLoggedApp={setLogged} />
+            </Route>
+            <Route path="/dashboard" component={Dashboard} />
+          </div>
         </Switch>
-          <Footer></Footer>
+        <Footer></Footer>
       </div>
     </BrowserRouter>
   );
