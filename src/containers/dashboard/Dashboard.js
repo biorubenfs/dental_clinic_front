@@ -22,15 +22,21 @@ const Dashboard = () => {
 
             setResults(Appointments)
 
+            if (Appointments.length < 1) {
+                setError(0);
+            }
+
         } catch (e) {
             console.log(e)
-            setError(0);
+            setError(1);
         }
     }
 
     let msg;
 
     if (error === 0) {
+        msg = <AppointmentMessage msg="There is currently no appointments to show"></AppointmentMessage>
+    } else if (error === 1) {
         msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
     }
 
