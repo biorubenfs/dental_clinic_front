@@ -2,6 +2,7 @@ import "./Signup.css";
 import React, { Component } from 'react';
 import fetchSignup from "../../services/fetchSignup";
 import SignupMessage from "../../components/signupMessage/SignupMessage";
+import { withRouter } from 'react-router-dom'
 
 class Signup extends Component {
     constructor(props) {
@@ -52,6 +53,7 @@ class Signup extends Component {
 
             if (res.status === 201) {
                 this.setState({ statusCode: 2 })
+                this.props.history.push("/login");
             } else if (res.status === 400) {
                 this.setState({ statusCode: 3 });
             } else {
@@ -61,7 +63,7 @@ class Signup extends Component {
             this.setState({ statusCode: 1 });
         }
     }
-    
+
 
     render() {
 
@@ -113,5 +115,5 @@ class Signup extends Component {
     }
 }
 
-
-export default Signup;
+export default withRouter(Signup);
+// export default Signup;
