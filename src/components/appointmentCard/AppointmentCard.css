@@ -77,19 +77,6 @@
     padding: 0.2em;
 }
 
-.cancel-btn:link, .cancel-btn:visited {
-    z-index: 1;
-    color: white;
-    background-color: #282c34;
-    border-radius: 0.3em;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.cancel-btn:hover, .cancel-btn:active {
-    background-color: gray;
-}
-
 @media (min-width: 1366px) {
     .card {
         flex-direction: row;

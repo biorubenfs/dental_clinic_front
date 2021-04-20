@@ -13,9 +13,15 @@ const Footer = () => {
 
                     <div>70 Great Russell St, Holborn, London WC1B 3BN, UK</div>
                     <div className="footer-iconos">
-                        <a className="icon icon-twitter" target="_blank" href="http://www.google.es"></a>
-                        <a className="icon icon-instagram" target="_blank" href="http://www.google.es"></a>
-                        <a className="icon icon-facebook" target="_blank" href="http://www.google.es"></a>
+                        <a target="_blank" rel="noreferrer" href="http://www.google.es">
+                            <div className="icon icon-twitter" ></div>
+                        </a>
+                        <a target="_blank" rel="noreferrer" href="http://www.google.es">
+                            <div className="icon icon-instagram" ></div>
+                        </a>
+                        <a target="_blank" rel="noreferrer" href="http://www.google.es">
+                        <div className="icon icon-facebook" ></div>
+                        </a>
                     </div>
                 </div>
             </div>
