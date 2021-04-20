@@ -23,7 +23,7 @@ class Navbar extends Component {
                         {this.props.isAdmin && <Link to="/new-appointment">New Appointment</Link>}
                         {this.props.isAdmin && <Link to="/view-appointments">View Appointments</Link>}
 
-                        <Link to="/dashboard">Dashboard</Link>
+                        {this.props.isLogged && !this.props.isAdmin && <Link to="/dashboard">Dashboard</Link>}
 
                         {this.props.isLogged && <Link to="" onClick={() => this.handleLogout()}>Logout</Link>}
                         {!this.props.isLogged && <Link to="/login">Login</Link>}
