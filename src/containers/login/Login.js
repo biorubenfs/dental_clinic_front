@@ -2,6 +2,7 @@ import "./Login.css";
 import fetchLogin from "../../services/fetchLogin";
 import React, { Component } from "react";
 import LoginMessage from "../../components/loginMessage/LoginMessage";
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
@@ -39,7 +40,13 @@ class Login extends Component {
                 this.setState({ error: [2] });
             } else {
                 this.setState({ error: [1] });
+
+                // TODO: modificar el estado de app.js concretamente el isLogged 
                 localStorage.setItem('userData', JSON.stringify(res));
+                this.props.setLoggedApp(true);
+
+                this.props.history.push('/dashboard')
+                // console.log(JSON.parse(localStorage.getItem('userData')).token);
             }
         } catch (error) {
             this.setState({ error: [0] });
@@ -88,4 +95,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
