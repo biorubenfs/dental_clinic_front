@@ -51,10 +51,15 @@ class Login extends Component {
 
                 if (res.role === 'admin') {
                     this.props.setAdminApp(true);
-                };
+                    this.props.history.push("/view-appointments");
+                    this.props.setLoggedApp(true);
+                } else {
+                    this.props.history.push('/dashboard');
+                    this.props.setLoggedApp(true);
+                }
 
-                this.props.setLoggedApp(true);
-                this.props.history.push('/dashboard')
+                // this.props.setLoggedApp(true);
+                // this.props.history.push('/dashboard')
                 // console.log(JSON.parse(localStorage.getItem('userData')).token);
             }
         } catch (error) {
