@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import Home from './containers/home/Home';
 import './App.css';
 import NewAppointment from './containers/newAppointment/NewAppointment';
@@ -16,26 +15,23 @@ import { useState } from 'react'
 function App() {
 
   const [isLogged, setLogged] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar isLogged={isLogged} setLoggedApp={setLogged}></Navbar>
+        <Navbar isLogged={isLogged} setLoggedApp={setLogged} isAdmin={isAdmin} setAdminApp={setAdmin}></Navbar>
         <div className="App-body">
           <Logo></Logo>
           <Switch>
-            {/* <div className="App-body"> */}
-            {/* <Logo></Logo> */}
-            {/* <img src={logo} className="App-logo" alt="logo" /> */}
             <Route path="/" component={Home} exact />
             <Route path="/new-appointment" component={NewAppointment} />
             <Route path="/view-appointments" component={ViewAppointments} />
             <Route path="/signup" component={Signup} />
             <Route path="/login">
-              <Login setLoggedApp={setLogged} />
+              <Login setLoggedApp={setLogged} setAdminApp={setAdmin} />
             </Route>
             <Route path="/dashboard" component={Dashboard} />
-            {/* </div> */}
           </Switch>
         </div>
         <Footer></Footer>

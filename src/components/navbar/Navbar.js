@@ -10,7 +10,7 @@ class Navbar extends Component {
     handleLogout() {
         localStorage.removeItem('userData');
         this.props.setLoggedApp(false);
-
+        this.props.setAdminApp(false);
     }
 
     render() {
@@ -20,17 +20,15 @@ class Navbar extends Component {
                 <div className='navbar-bg'>
                     <nav className='navbar'>
                         <Link to="/">Home</Link>
-                        <Link to="/new-appointment">Get an Appointment</Link>
-                        <Link to="/view-appointments">View Appointments</Link>
+                        {this.props.isAdmin && <Link to="/new-appointment">New Appointment</Link>}
+                        {this.props.isAdmin && <Link to="/view-appointments">View Appointments</Link>}
+
                         <Link to="/dashboard">Dashboard</Link>
 
                         {this.props.isLogged && <Link to="" onClick={() => this.handleLogout()}>Logout</Link>}
                         {!this.props.isLogged && <Link to="/login">Login</Link>}
-                        {/* {this.estado && <Link to="">Logout</Link>} */}
-                        {/* {!this.estado && <Link to="/login">Login</Link>} */}
 
                         <Link to="/signup">Register</Link>
-                        {/* <a onClick={() => this.doLogin()}>Comprobando Login</a> */}
                     </nav>
                 </div>
             </header>

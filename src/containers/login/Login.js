@@ -11,7 +11,7 @@ class Login extends Component {
             error: [3],
             email: null,
             password: null,
-            msg: null
+            msg: null,
         };
     }
 
@@ -43,8 +43,12 @@ class Login extends Component {
 
                 // TODO: modificar el estado de app.js concretamente el isLogged 
                 localStorage.setItem('userData', JSON.stringify(res));
-                this.props.setLoggedApp(true);
 
+                if (res.role === 'admin') {
+                    this.props.setAdminApp(true);
+                };
+
+                this.props.setLoggedApp(true);
                 this.props.history.push('/dashboard')
                 // console.log(JSON.parse(localStorage.getItem('userData')).token);
             }
