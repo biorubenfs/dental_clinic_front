@@ -13,6 +13,7 @@ class Login extends Component {
             password: null,
             msg: null,
         };
+        this.textInput = React.createRef();
     }
 
     // Posibles estados:
@@ -20,6 +21,10 @@ class Login extends Component {
     // 1 => OK
     // 2 => wrong
     // 3 => Login
+
+    componentDidMount() {
+        this.textInput.current.focus();
+    }
 
     getEmailChange(event) {
         this.setState({ email: event.target.value });
@@ -80,7 +85,7 @@ class Login extends Component {
                 </div>
                 <form onSubmit={(e) => this.handlerFetch(e)}>
                     <input
-                        className="input input-email" type="email" name="email"
+                        className="input input-email" type="email" name="email" ref={this.textInput}
                         placeholder="Enter your email" required onChange={(e) => this.getEmailChange(e)}
                     ></input>
                     <br></br>
