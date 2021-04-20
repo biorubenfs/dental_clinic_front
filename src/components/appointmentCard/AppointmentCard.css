@@ -1,0 +1,175 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: black;
+    width: 30em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0.2em 0.2em #282c34;
+    border-radius: 0.5em;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.row, .pivot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pivot {
+    border-top: 0.15em solid gray;
+}
+
+.field {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding: 1em;
+}
+
+.id-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    padding-left: 1.5em;
+}
+
+.appointment-id {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    padding-left: 2em;
+
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    width: 55%;
+    padding: 1em;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.status-msg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+.cancel-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.2em;
+}
+
+@media (min-width: 1366px) {
+    .card {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 70vw;
+    }
+    
+    .column {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .row {
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .field {
+        flex-direction: column;
+    }
+
+    .pivot {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        border: none;
+    }
+
+    .id-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 70%;
+    }
+
+    .appointment-id, .date, .status, .id-label {
+        border: none;
+    }
+
+    .appointment-id {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        justify-content: flex-end;
+        padding-right: 1em;
+    }
+
+    .id-label {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        justify-content: flex-end;
+        margin: 0em;
+        padding: 0em;        
+        padding-right: 0.75em;
+    }
+
+    .date {
+        display: flex;
+        flex-direction: row;
+        width: 15em;
+    }
+
+    .status {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .field.client {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.email {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.doctor {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+
+    .field.speciality {
+        display: flex;
+        justify-content: center;
+        width: 10em;
+    }
+}

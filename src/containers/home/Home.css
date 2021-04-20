@@ -1,0 +1,29 @@
+.covid-alert {
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  border: 0.2rem solid black;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0.8rem 0.4rem 0.4rem black;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+@media (min-width: 720px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (min-width: 1366px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}

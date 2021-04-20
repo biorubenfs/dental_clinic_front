@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Table of contents
+- [Configuration](#Configuration)
+- [Run](#Run)
+- [Folder structure](#Project-folder-structure)
+- [Demo](#Demo)
+- [Features](#Features)
+#
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Dental clinic app
+It's a responsive web application  made by [Rubén Fernández](https://www.linkedin.com/in/rubenfernandezsantos/) and [Jarki Melendez](https://www.linkedin.com/in/jarki-melendez/) for appointments administration.
 
-In the project directory, you can run:
+Made with:
+- React 17
+- NodeJs with express
+- MySQL with sequelize 
+#
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Configuration
+- Backend: Download and install the [backend](https://github.com/jarki7777/API_Citas) repo
+- Dependencies: Clone this repository and on root folder run command:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+        npm install
 
-### `npm test`
+By default the react server will run on port 3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#
 
-### `npm run build`
+## Run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+On root folder run:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A new browser tab should open with http://localhost:3000/
 
-### `npm run eject`
+You can now use the app
+#
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project folder structure
+                ├───public
+                └───src
+                ├───components
+                │   ├───alertPopUp
+                │   ├───appointmentCard
+                │   ├───appointmentMessage
+                │   ├───covid
+                │   ├───dashboardCard
+                │   ├───footer
+                │   ├───homeCard
+                │   ├───loginMessage
+                │   ├───logo
+                │   ├───navbar
+                │   ├───searchInput
+                │   └───signupMessage
+                ├───containers
+                │   ├───contact
+                │   ├───dashboard
+                │   ├───home
+                │   ├───login
+                │   ├───newAppointment
+                │   ├───signup
+                │   └───viewAppointments
+                ├───img
+                └───services
+#
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Demo
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/76188418/115443154-314adc00-a213-11eb-816f-c1e8b7ab9535.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/76188418/115443163-34de6300-a213-11eb-973a-c0e2e338e37c.gif)
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Homepage with fictional treatments offered by the clinic
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![screenshot_home](https://user-images.githubusercontent.com/76188418/115441175-dd3ef800-a210-11eb-8308-dbbed14c5a09.png)
 
-### Code Splitting
+![localhost_3000_](https://user-images.githubusercontent.com/76188418/115441158-da440780-a210-11eb-806d-00b8bd45d2f4.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Signup page
 
-### Analyzing the Bundle Size
+![screenshot_signup](https://user-images.githubusercontent.com/76188418/115441177-dd3ef800-a210-11eb-93a1-bd8715e2c17b.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Login page
 
-### Making a Progressive Web App
+![screenshot_login](https://user-images.githubusercontent.com/76188418/115441176-dd3ef800-a210-11eb-9849-537b7f41efea.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Client users will be redirected to a dashboard once logged in and they can see their upcoming appointments info
 
-### Advanced Configuration
+![screenshot_dashboard](https://user-images.githubusercontent.com/76188418/115441172-dca66180-a210-11eb-98ab-165779857d8a.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- If the logged user is an Admin, it will be redirected to a view of pending appointments instead
 
-### Deployment
+![localhost_3000_view-appointments](https://user-images.githubusercontent.com/76188418/115441162-dadc9e00-a210-11eb-91c1-50a3b0d1d749.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Admin can cancel pending appointments
 
-### `npm run build` fails to minify
+![screenshot_](https://user-images.githubusercontent.com/76188418/115441166-dc0dcb00-a210-11eb-90c3-f0997670edaa.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Admin can also create new appointments. Originally the backend didn't show users or doctors list, so the admin must know the IDs of users and doctors to create appointments
+
+![screenshot_appointment_2](https://user-images.githubusercontent.com/76188418/115441171-dca66180-a210-11eb-8276-795cfa1f273f.png)
+
+
+#
+
+
+## Authors
+
+[Rubén Fernández](https://www.linkedin.com/in/rubenfernandezsantos/)
+
+[Jarki Melendez](https://www.linkedin.com/in/jarki-melendez/)
+
+[TOP](#Table-of-contents)

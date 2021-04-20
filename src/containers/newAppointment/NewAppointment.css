@@ -1,0 +1,42 @@
+.new-appointment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: x-large;
+}
+
+.appointForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.short-input {
+  padding-left: 1rem;
+  border-radius: 0.6rem;
+  width: 10rem;
+  margin: 0.6rem 0rem;
+  height: 2rem;
+}
+
+.date-input {
+  width: 10rem;
+  padding-left: 1rem;
+  border-radius: 0.6rem;
+  margin: 0.6rem 0rem;
+  height: 2rem;
+}
+
+.sub-btn {
+  width: 6rem;
+  height: 2rem;
+  color: black;
+  /* margin-bottom: 2rem; */
+}
+
+/* .signup-button {
+    width: 6rem;
+    height: 2rem;
+    color: black;
+    margin-top: 2rem;
+  } */
