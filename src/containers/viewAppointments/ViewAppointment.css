@@ -29,8 +29,12 @@
     width: 12em;
     margin-top: 1em;
     margin-bottom: 1em;
+    color: lightgray;
 }
 
-.pagination > a:link, .pagination > a:visited {
+.page-btn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
     color: lightgray;
+    text-decoration: underline;    
 }

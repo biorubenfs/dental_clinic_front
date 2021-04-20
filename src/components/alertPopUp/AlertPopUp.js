@@ -7,8 +7,8 @@ const AlertPopUp = (props) => {
                 Are you sure?
             </div>
             <div className="confirm-btns">
-                <a className="yes-btn" href="#" onClick={props.cancel}>Yes</a>
-                <a className="no-btn" href="#" onClick={props.cancelNot}>No!</a>
+                <button className="card-button" onClick={props.cancel}>Yes</button>
+                <button className="card-button" onClick={props.cancelNot}>No!</button>
             </div>
         </div>
     )
