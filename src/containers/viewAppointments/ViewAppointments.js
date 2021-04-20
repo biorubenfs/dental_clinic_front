@@ -62,6 +62,7 @@ const ViewAppointments = () => {
     const cancelDate = async () => {
         await fetchAppointments.cancelAppointment(cancelId)
         setAlert(false);
+        getAppointments();        
     }
 
     return (
