@@ -83,9 +83,9 @@ const ViewAppointments = () => {
                     </div>}
                 </div>
                 <div className="pagination">
-                    <a href="#" onClick={() => previousPage()}>prev</a>
+                    <button className="page-btn" href="#" onClick={() => previousPage()}>prev</button>
                     <div>page 1 of {count}</div>
-                    <a href="#" onClick={() => nextPage()}>next</a>
+                    <button className="page-btn" href="#" onClick={() => nextPage()}>next</button>
                 </div>
             </div>
         </>

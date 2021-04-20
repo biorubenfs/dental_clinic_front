@@ -84,7 +84,7 @@ class NewAppointment extends Component {
                             <DatePicker className="date-input" selected={this.state.date} 
                             onChange={date => {
                                 this.setState({ date: date });
-                                const startDate = this.state.date
+                                const startDate = this.state.date;
                             }} 
                             minDate={Date.now()} showTimeSelect dateFormat="Pp"/><br></br>
                         <label htmlFor="user"></label>

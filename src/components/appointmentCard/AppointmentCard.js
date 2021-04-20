@@ -47,7 +47,7 @@ const AppointmentCard = (props) => {
                 </div>
                 <div className="status">
                     <div className="status-msg">Status: {props.status}</div>
-                    <div><a className="cancel-btn" href="#" onClick={props.cancelBtn}>Cancel</a></div>
+                    <div><button className="card-button" onClick={props.cancelBtn}>Cancel</button></div>
                 </div>
             </div>
         </div>
