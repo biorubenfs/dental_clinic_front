@@ -14,7 +14,12 @@ class Signup extends Component {
         this.username = null;
         this.email = null;
         this.password = null;
+        this.textInput = React.createRef();
     };
+
+    componentDidMount() {
+        this.textInput.current.focus();
+    }
 
     getUsernameChange(event) {
         if (event.target.value.length < 4) {
@@ -56,6 +61,7 @@ class Signup extends Component {
             this.setState({ statusCode: 1 });
         }
     }
+    
 
     render() {
 
@@ -89,7 +95,7 @@ class Signup extends Component {
                 <form onSubmit={(e) => this.signupHandler(e)}>
 
                     <input className="input" type="text" name="username" onInput={(e) => this.getUsernameChange(e)}
-                        required placeholder="Enter your username"></input><br></br>
+                        required placeholder="Enter your username" ref={this.textInput}></input><br></br>
                     {!this.state.usernameIsValid && <p>Username must be of minimum 4  characters</p>}<br></br>
 
                     <input className="input" type="email" name="email" onInput={(e) => this.getEmailChange(e)}
