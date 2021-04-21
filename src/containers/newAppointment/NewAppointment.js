@@ -5,6 +5,7 @@ import fetchUsers from "../../services/fetchUsers"
 import './NewAppointment.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import UserList from '../../components/userList/UserList';
 
 class NewAppointment extends Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class NewAppointment extends Component {
         this.state = {
             message: null,
             date: new Date(),
-            clientList: null
+            clientList: null,
+            searchTerm: null
         }
     }
 
@@ -47,16 +49,22 @@ class NewAppointment extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getClients();
-    }
+    async getClients(event) {
 
-    async getClients() {
+        event.preventDefault()
+        const name = event.target.value;
+        
         try {
-        const res = await fetchUsers.fetchClients();
-        this.setState({ clientList: res }) 
-        console.log(this.state.clientList)
-        } catch(e) {
+            const res = await fetchUsers.fetchClients();
+            const { client } = res;
+
+            const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
+
+            const filterResults = client.filter(filterParam);
+
+            this.setState({ clientList: filterResults });
+
+        } catch (e) {
             console.log(e);
         }
     }
@@ -95,14 +103,14 @@ class NewAppointment extends Component {
             <>
                 <div className="new-appointment">
                     <strong>New Appointment</strong>
-                    <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
+                    <form className="appointForm" onSubmit={() => this.fetchHandler()}><br></br>
                         <label htmlFor="date"></label>
-                            <DatePicker className="date-input" selected={this.state.date} 
+                        <DatePicker className="date-input" selected={this.state.date}
                             onChange={date => {
                                 this.setState({ date: date });
                                 const startDate = this.state.date;
-                            }} 
-                            minDate={Date.now()} showTimeSelect dateFormat="Pp"/><br></br>
+                            }}
+                            minDate={Date.now()} showTimeSelect dateFormat="Pp" /><br></br>
                         <label htmlFor="user"></label>
                         <input
                             className="short-input"
@@ -121,9 +129,29 @@ class NewAppointment extends Component {
                             required
                             placeholder="Doctor ID"
                         ></input><br></br>
-                        <button className="button sub-btn" type="submit">Submit</button>
+                        <button className="button sub-btn" type="submit">Submit</button><br></br>
                     </form>
                     {msg}
+                    <label htmlFor="search user"></label>
+                    <div className="search-bar">
+                        <form>
+                            <input
+                                className="short-input"
+                                type="search"
+                                name="searchUser"
+                                placeholder="search user by name"
+                                onInput={(e) => this.getClients(e)}
+                            ></input>
+                        </form>
+                    </div>
+                    <UserList user="Client" id="XX"></UserList>
+                    {this.state.clientList && <div>
+                        {this.state.clientList.map(element => <UserList
+                            key={this.state.clientList.indexOf(element)}
+                            user={element.name}
+                            id={element.id}
+                        ></UserList>)}
+                    </div>}
                 </div>
             </>
         );
