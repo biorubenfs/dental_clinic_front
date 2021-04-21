@@ -125,7 +125,7 @@ class NewAppointment extends Component {
             <>
                 <div className="new-appointment">
                     <strong>New Appointment</strong>
-                    <form className="appointForm" onSubmit={() => this.fetchHandler()}><br></br>
+                    <form className="appointForm" onSubmit={(e) => this.fetchHandler(e)}><br></br>
                         <label htmlFor="date"></label>
                         <DatePicker className="date-input" selected={this.state.date}
                             onChange={date => {
