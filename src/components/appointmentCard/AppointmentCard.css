@@ -139,7 +139,7 @@
     .date {
         display: flex;
         flex-direction: row;
-        width: 15em;
+        width: auto;
     }
 
     .status {
@@ -172,4 +172,14 @@
         justify-content: center;
         width: 10em;
     }
+
+    .status  {
+        width: auto;        
+    }
 }
+
+/* @media (max-width: 540px) {
+    .card {
+        width: 500px;
+    }
+} */
