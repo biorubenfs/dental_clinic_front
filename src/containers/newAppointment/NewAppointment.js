@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppointmentMessage from '../../components/appointmentMessage/AppointmentMessage';
 import fetchAppointments from '../../services/fetchAppointments';
+import fetchUsers from "../../services/fetchUsers"
 import './NewAppointment.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,8 +11,9 @@ class NewAppointment extends Component {
         super(props);
         this.state = {
             message: null,
-            date: new Date()
-        };
+            date: new Date(),
+            clientList: null
+        }
     }
 
     async fetchHandler(event) {
@@ -42,6 +44,20 @@ class NewAppointment extends Component {
             console.log(e)
             this.setState({ message: 1 })
 
+        }
+    }
+
+    componentDidMount() {
+        this.getClients();
+    }
+
+    async getClients() {
+        try {
+        const res = await fetchUsers.fetchClients();
+        this.setState({ clientList: res }) 
+        console.log(this.state.clientList)
+        } catch(e) {
+            console.log(e);
         }
     }
 

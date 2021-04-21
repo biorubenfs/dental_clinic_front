@@ -16,7 +16,6 @@ const ViewAppointments = () => {
         getAppointments();
     }, []);
 
-
     const getAppointments = async () => {
 
         try {
@@ -26,6 +25,8 @@ const ViewAppointments = () => {
 
             if (rows) {
                 setResults(rows);
+            } else if (rows.length >= 0) {
+                setError(1)
             }
 
         } catch (e) {
@@ -38,12 +39,18 @@ const ViewAppointments = () => {
 
     if (error === 0) {
         msg = <AppointmentMessage msg="Internal server error"></AppointmentMessage>
+    } else if (error === 1) {
+        <AppointmentMessage msg="There are currently no appointments"></AppointmentMessage>
     }
 
     const cancelDate = async () => {
-        await fetchAppointments.cancelAppointment(cancelId)
-        setAlert(false);
-        getAppointments();        
+        try {
+            await fetchAppointments.cancelAppointment(cancelId)
+            setAlert(false);
+            getAppointments();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (
