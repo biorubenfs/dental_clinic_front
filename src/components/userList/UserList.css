@@ -14,9 +14,32 @@
     padding: 0.5em;
 }
 
-.user-name {
+.user-info {
     display: flex;
     flex-direction: row;
+}
+
+.select-id-btn {
+  border: 0.1rem solid grey;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.select-id-btn:link, .select-id-btn:visited {
+  z-index: 1;
+  color: white;
+  background-color: #282c34;
+  width: 4em;
+  border-radius: 0.3em;
+  text-decoration: none;
+}
+
+.select-id-btn:hover, .select-id-btn:active {
+  background-color: #282c34;
+  color: white;
+  transition: 0.4s;
 }
 
 @media (max-width: 540px) {

@@ -14,7 +14,9 @@ class NewAppointment extends Component {
             message: null,
             date: new Date(),
             clientList: null,
-            searchTerm: null
+            doctorList: null,
+            clientId: null,
+            doctorId: null
         }
     }
 
@@ -63,6 +65,26 @@ class NewAppointment extends Component {
             const filterResults = client.filter(filterParam);
 
             this.setState({ clientList: filterResults });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getDoctors(event) {
+
+        event.preventDefault()
+        const name = event.target.value;
+        
+        try {
+            const res = await fetchUsers.fetchDoctors();
+            const { doctors } = res;
+
+            const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
+
+            const filterResults = doctors.filter(filterParam);
+
+            this.setState({ doctorList: filterResults });
 
         } catch (e) {
             console.log(e);
@@ -118,7 +140,8 @@ class NewAppointment extends Component {
                             min="2"
                             name="userId"
                             required
-                            placeholder="User ID"
+                            placeholder="user ID"
+                            value={this.state.clientId && this.state.clientId}
                         ></input><br></br>
                         <label htmlFor="doctor"></label>
                         <input
@@ -127,11 +150,13 @@ class NewAppointment extends Component {
                             min="1"
                             name="doctorId"
                             required
-                            placeholder="Doctor ID"
+                            placeholder="doctor ID"
+                            value={this.state.doctorId && this.state.doctorId}
                         ></input><br></br>
                         <button className="button sub-btn" type="submit">Submit</button><br></br>
                     </form>
                     {msg}
+                    <span className="tip">Use the search tools below to know the user's and doctor's ID</span>
                     <label htmlFor="search user"></label>
                     <div className="search-bar">
                         <form>
@@ -144,12 +169,36 @@ class NewAppointment extends Component {
                             ></input>
                         </form>
                     </div>
-                    <UserList user="Client" id="XX"></UserList>
+                    <UserList user="Client" email="email" id="XX"></UserList>
                     {this.state.clientList && <div>
                         {this.state.clientList.map(element => <UserList
                             key={this.state.clientList.indexOf(element)}
                             user={element.name}
+                            email={element.email}
                             id={element.id}
+                            select={() => this.setState({ clientId: element.id })}
+                        ></UserList>)}
+                    </div>}
+                    <label htmlFor="search doctor"></label>
+                    <div className="search-bar">
+                        <form>
+                            <input
+                                className="short-input"
+                                type="search"
+                                name="searchDoctor"
+                                placeholder="search doctor by name"
+                                onInput={(e) => this.getDoctors(e)}
+                            ></input>
+                        </form>
+                    </div>
+                    <UserList user="Doctor" email="speciality" id="XX"></UserList>
+                    {this.state.doctorList && <div>
+                        {this.state.doctorList.map(element => <UserList
+                            key={this.state.doctorList.indexOf(element)}
+                            user={element.name}
+                            email={element.speciality}
+                            id={element.id}
+                            select={() => this.setState({ doctorId: element.id })}
                         ></UserList>)}
                     </div>}
                 </div>

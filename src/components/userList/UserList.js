@@ -4,12 +4,16 @@ const UserList = (props) => {
 
     return (
         <div className="user-list">
-            <div className="user-name">
+            <div className="user-info">
                 {props.user}
             </div>
-            <div className="user-id">
+            <div className="user-info">
+                {props.email}
+            </div>
+            <div className="user-info">
                 ID: {props.id}
             </div>
+            <button className="select-id-btn" onClick={props.select}>Select</button>
         </div>
     );
 }

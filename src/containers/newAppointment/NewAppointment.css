@@ -40,6 +40,10 @@
   width: 20em;
 }
 
+.tip {
+  font-size:medium;
+}
+
 @media (max-width: 540px) {
   .search-bar {
     width: 80%;
