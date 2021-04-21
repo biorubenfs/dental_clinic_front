@@ -93,23 +93,24 @@ class Signup extends Component {
                 <div>
                     {msg}
                 </div>
+                <div className="signup-form">
+                    <form onSubmit={(e) => this.signupHandler(e)}>
 
-                <form onSubmit={(e) => this.signupHandler(e)}>
+                        <input className="input" type="text" name="username" onInput={(e) => this.getUsernameChange(e)}
+                            required placeholder="Enter your username" ref={this.textInput}></input><br></br>
+                        {!this.state.usernameIsValid && <p>Username must be of minimum 4  characters</p>}<br></br>
 
-                    <input className="input" type="text" name="username" onInput={(e) => this.getUsernameChange(e)}
-                        required placeholder="Enter your username" ref={this.textInput}></input><br></br>
-                    {!this.state.usernameIsValid && <p>Username must be of minimum 4  characters</p>}<br></br>
+                        <input className="input" type="email" name="email" onInput={(e) => this.getEmailChange(e)}
+                            required placeholder="Enter your email"></input><br></br>
 
-                    <input className="input" type="email" name="email" onInput={(e) => this.getEmailChange(e)}
-                        required placeholder="Enter your email"></input><br></br>
+                        <input className="input" type="password" name="password" onInput={(e) => this.getPasswordChange(e)}
+                            required placeholder="Enter your password"></input><br></br>
+                        {!this.state.passwordIsValid && <p>Password must be of minimum 4 characters</p>}<br></br>
 
-                    <input className="input" type="password" name="password" onInput={(e) => this.getPasswordChange(e)}
-                        required placeholder="Enter your password"></input><br></br>
-                    {!this.state.passwordIsValid && <p>Password must be of minimum 4 characters</p>}<br></br>
+                        <button className="button signup-button" type="submit">Signup</button>
 
-                    <button className="button signup-button" type="submit">Signup</button>
-
-                </form >
+                    </form >
+                </div>
             </>
         )
     }

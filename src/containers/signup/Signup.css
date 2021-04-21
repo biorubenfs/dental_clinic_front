@@ -1,3 +1,7 @@
+form {
+  justify-content: center;
+}
+
 .signup-button {
   width: 6rem;
   height: 2rem;
@@ -10,4 +14,22 @@
   height: 2rem;
   width: 20rem;
   margin: 0.6rem 0rem;
+}
+
+@media (max-width: 540px) {
+  .signup-form > form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input {
+    width: 65%;
+  }
+
+  br + p {
+    width: 70%;
+  }
 }
