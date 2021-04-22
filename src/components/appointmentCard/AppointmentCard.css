@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.4);
     color: black;
-    width: 30em;
+    width: auto;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     box-shadow: 0.2em 0.2em #282c34;
@@ -70,13 +70,6 @@
     height: 50%;
 }
 
-.cancel-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0.2em;
-}
-
 @media (min-width: 1366px) {
     .card {
         flex-direction: row;
@@ -139,7 +132,7 @@
     .date {
         display: flex;
         flex-direction: row;
-        width: 15em;
+        width: auto;
     }
 
     .status {
@@ -171,5 +164,17 @@
         display: flex;
         justify-content: center;
         width: 10em;
+    }
+
+    .status  {
+        width: auto;        
+    }
+}
+
+@media (max-width: 540px) {
+    .status > div> .card-button {
+        margin-top: 0.5em;
+        width: 4em;
+        padding: 0.4rem 0.2rem;;
     }
 }

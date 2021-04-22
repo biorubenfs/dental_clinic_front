@@ -45,3 +45,10 @@
   color: cornflowerblue;
   transition: 0.2s;
 }
+
+@media (max-width: 1024px) {
+  .navbar-bg {
+    padding-top: 1.5em;
+    min-height: 4em;
+  }
+}

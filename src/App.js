@@ -25,8 +25,14 @@ function App() {
           <Logo></Logo>
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/new-appointment" component={NewAppointment} />
-            <Route path="/view-appointments" component={ViewAppointments} />
+            <Route path="/new-appointment" >
+              {isAdmin && <NewAppointment></NewAppointment>}
+              {!isAdmin && <Home></Home>}
+            </Route>
+            <Route path="/view-appointments">
+              {isAdmin && <ViewAppointments></ViewAppointments>}
+              {!isAdmin && <Home></Home>}
+            </Route>
             <Route path="/signup" component={Signup} />
             <Route path="/login">
               <Login setLoggedApp={setLogged} setAdminApp={setAdmin} />
