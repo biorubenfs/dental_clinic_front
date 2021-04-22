@@ -53,11 +53,15 @@ class NewAppointment extends Component {
         }
     }
 
+
+    //La lista de clientes y doctores se pide una vez, al caragr el componente
+    
     componentDidMount() {
         this.fetchingClients();
         this.fetchingDoctors();
     }
 
+    //Almacenar la lista de clientes (viene como un array) en un estado
     async fetchingClients() {
 
         try {
@@ -71,6 +75,7 @@ class NewAppointment extends Component {
         }
     }
 
+    //handler para escuchar cambios en el input de search cliente
     getClients(event) {
 
         event.preventDefault();
@@ -87,6 +92,10 @@ class NewAppointment extends Component {
 
     }
 
+    //En caso de querer hacer fetch con cada input o con cada 3 caracteres para no sobrecargar las
+    // peticiones a la base de datos se podría incluir la lógica de los handlers dentro de los fetch
+
+    //Almacenar la lista de doctores (viene como un array) en un estado
     async fetchingDoctors() {
 
 
@@ -101,6 +110,7 @@ class NewAppointment extends Component {
         }
     }
 
+    //handler para escuchar cambios en el input de search doctor
     getDoctors(event) {
 
         event.preventDefault();
@@ -195,6 +205,10 @@ class NewAppointment extends Component {
                             ></input>
                         </form>
                     </div>
+
+{/* Mapeo del array de clientes para pintarlos como un componente tipo tabla llamado UserList que recibe por 
+props los campos de la "tabla" */}
+
                     <UserList user="Client" email="email" id="XX"></UserList>
                     {this.state.clientList && <div>
                         {this.state.clientList.map(element => <UserList
@@ -217,6 +231,9 @@ class NewAppointment extends Component {
                             ></input>
                         </form>
                     </div>
+
+{/* Lo mismo para los doctores */}
+
                     <UserList user="Doctor" email="speciality" id="XX"></UserList>
                     {this.state.doctorList && <div>
                         {this.state.doctorList.map(element => <UserList
