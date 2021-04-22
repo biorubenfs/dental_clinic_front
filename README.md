@@ -69,7 +69,12 @@ You can now use the app
 
 ## Demo
 
+![React App - Personal - Microsoft_ Edge 2021-04-22 20-28-56](https://user-images.githubusercontent.com/76188418/115769653-12338200-a3ac-11eb-9c1d-537f9766b2f3.gif)
+
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/76188418/115443154-314adc00-a213-11eb-816f-c1e8b7ab9535.gif)
+
+
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/76188418/115443163-34de6300-a213-11eb-973a-c0e2e338e37c.gif)
 
 ## Features
