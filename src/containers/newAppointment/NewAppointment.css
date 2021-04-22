@@ -49,3 +49,21 @@
     width: 80%;
   }
 }
+
+.search-pop-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  font-size: medium;
+  background-color: lightgray;
+  color: black;
+  margin-bottom: 0.5em;
+  box-shadow: 0.2em 0.2em #282c34;
+  border-radius: 0.5em;
+  width: 30em;
+  padding: 0.5em;
+  position: fixed;
+  top: 30vh;
+}

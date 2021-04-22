@@ -19,6 +19,8 @@ class NewAppointment extends Component {
             doctorList: null,
             clientId: null,
             doctorId: null,
+            showSearchBoxClients: false,
+            showSearchBoxDoctors: false
         }
     }
 
@@ -53,11 +55,15 @@ class NewAppointment extends Component {
         }
     }
 
+
+    //La lista de clientes y doctores se pide una vez, al caragr el componente
+
     componentDidMount() {
         this.fetchingClients();
         this.fetchingDoctors();
     }
 
+    //Almacenar la lista de clientes (viene como un array) en un estado
     async fetchingClients() {
 
         try {
@@ -71,6 +77,7 @@ class NewAppointment extends Component {
         }
     }
 
+    //handler para escuchar cambios en el input de search cliente
     getClients(event) {
 
         event.preventDefault();
@@ -80,13 +87,17 @@ class NewAppointment extends Component {
             if (!name) return false
             return element.name.toLowerCase().includes(name.toLowerCase());
         }
-        
+
         const filterResults = this.state.fetchedClients.filter(filterParam);
 
         this.setState({ clientList: filterResults });
 
     }
 
+    //En caso de querer hacer fetch con cada input o con cada 3 caracteres para no sobrecargar las
+    // peticiones a la base de datos se podría incluir la lógica de los handlers dentro de los fetch
+
+    //Almacenar la lista de doctores (viene como un array) en un estado
     async fetchingDoctors() {
 
 
@@ -101,6 +112,7 @@ class NewAppointment extends Component {
         }
     }
 
+    //handler para escuchar cambios en el input de search doctor
     getDoctors(event) {
 
         event.preventDefault();
@@ -168,6 +180,7 @@ class NewAppointment extends Component {
                             required
                             placeholder="user ID"
                             value={this.state.clientId && this.state.clientId}
+                            onFocus={() => this.setState({ showSearchBoxClients: true })}
                         ></input><br></br>
                         <label htmlFor="doctor"></label>
                         <input
@@ -178,14 +191,15 @@ class NewAppointment extends Component {
                             required
                             placeholder="doctor ID"
                             value={this.state.doctorId && this.state.doctorId}
+                            onFocus={() => this.setState({ showSearchBoxDoctors: true })}
                         ></input><br></br>
                         <button className="button sub-btn" type="submit">Submit</button><br></br>
                     </form>
                     {msg}
                     <span className="tip">Use the search tools below to know the user's and doctor's ID</span>
-                    <label htmlFor="search user"></label>
-                    <div className="search-bar">
-                        <form>
+                    {this.state.showSearchBoxClients && <div className="search-pop-up">
+                        <label htmlFor="search user"></label>
+                        <div className="search-bar">
                             <input
                                 className="short-input"
                                 type="search"
@@ -193,21 +207,28 @@ class NewAppointment extends Component {
                                 placeholder="search user by name"
                                 onInput={(e) => this.getClients(e)}
                             ></input>
-                        </form>
-                    </div>
-                    <UserList user="Client" email="email" id="XX"></UserList>
-                    {this.state.clientList && <div>
-                        {this.state.clientList.map(element => <UserList
-                            key={this.state.clientList.indexOf(element)}
-                            user={element.name}
-                            email={element.email}
-                            id={element.id}
-                            select={() => this.setState({ clientId: element.id })}
-                        ></UserList>)}
+                        </div>
+
+                        {/* Mapeo del array de clientes para pintarlos como un componente tipo tabla llamado UserList que recibe por 
+props los campos de la "tabla" */}
+
+                        <UserList user="Client" email="email" id="XX"></UserList>
+                        {this.state.clientList && <div>
+                            {this.state.clientList.map(element => <UserList
+                                key={this.state.clientList.indexOf(element)}
+                                user={element.name}
+                                email={element.email}
+                                id={element.id}
+                                select={() => {
+                                    this.setState({ clientId: element.id });
+                                    this.setState({ showSearchBoxClients: false });
+                                }}
+                            ></UserList>)}
+                        </div>}
                     </div>}
-                    <label htmlFor="search doctor"></label>
-                    <div className="search-bar">
-                        <form>
+                    {this.state.showSearchBoxDoctors && <div className="search-pop-up">
+                        <label htmlFor="search doctor"></label>
+                        <div className="search-bar">
                             <input
                                 className="short-input"
                                 type="search"
@@ -215,17 +236,23 @@ class NewAppointment extends Component {
                                 placeholder="search doctor by name"
                                 onInput={(e) => this.getDoctors(e)}
                             ></input>
-                        </form>
-                    </div>
-                    <UserList user="Doctor" email="speciality" id="XX"></UserList>
-                    {this.state.doctorList && <div>
-                        {this.state.doctorList.map(element => <UserList
-                            key={this.state.doctorList.indexOf(element)}
-                            user={element.name}
-                            email={element.speciality}
-                            id={element.id}
-                            select={() => this.setState({ doctorId: element.id })}
-                        ></UserList>)}
+                        </div>
+
+                        {/* Lo mismo para los doctores */}
+
+                        <UserList user="Doctor" email="speciality" id="XX"></UserList>
+                        {this.state.doctorList && <div>
+                            {this.state.doctorList.map(element => <UserList
+                                key={this.state.doctorList.indexOf(element)}
+                                user={element.name}
+                                email={element.speciality}
+                                id={element.id}
+                                select={() => {
+                                    this.setState({ doctorId: element.id });
+                                    this.setState({ showSearchBoxDoctors: false });
+                                }}
+                            ></UserList>)}
+                        </div>}
                     </div>}
                 </div>
             </>
