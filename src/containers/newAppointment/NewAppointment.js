@@ -13,10 +13,12 @@ class NewAppointment extends Component {
         this.state = {
             message: null,
             date: new Date(),
+            fetchedClients: null,
+            fetchedDoctors: null,
             clientList: null,
             doctorList: null,
             clientId: null,
-            doctorId: null
+            doctorId: null,
         }
     }
 
@@ -51,44 +53,62 @@ class NewAppointment extends Component {
         }
     }
 
-    async getClients(event) {
+    componentDidMount() {
+        this.fetchingClients();
+        this.fetchingDoctors();
+    }
 
-        event.preventDefault()
-        const name = event.target.value;
-        
+    async fetchingClients() {
+
         try {
             const res = await fetchUsers.fetchClients();
             const { client } = res;
 
-            const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
-
-            const filterResults = client.filter(filterParam);
-
-            this.setState({ clientList: filterResults });
+            this.setState({ fetchedClients: client })
 
         } catch (e) {
             console.log(e);
         }
     }
 
-    async getDoctors(event) {
+    getClients(event) {
 
-        event.preventDefault()
+        event.preventDefault();
         const name = event.target.value;
-        
+
+        const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
+
+        const filterResults = this.state.fetchedClients.filter(filterParam);
+
+        this.setState({ clientList: filterResults });
+
+    }
+
+    async fetchingDoctors() {
+
+
         try {
             const res = await fetchUsers.fetchDoctors();
             const { doctors } = res;
 
-            const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
-
-            const filterResults = doctors.filter(filterParam);
-
-            this.setState({ doctorList: filterResults });
+            this.setState({ fetchedDoctors: doctors })
 
         } catch (e) {
             console.log(e);
         }
+    }
+
+    getDoctors(event) {
+
+        event.preventDefault();
+        const name = event.target.value;
+
+        const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
+
+        const filterResults = this.state.fetchedDoctors.filter(filterParam);
+
+        this.setState({ doctorList: filterResults });
+
     }
 
     render() {
