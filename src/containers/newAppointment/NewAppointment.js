@@ -76,8 +76,11 @@ class NewAppointment extends Component {
         event.preventDefault();
         const name = event.target.value;
 
-        const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
-
+        const filterParam = element => {
+            if (!name) return false
+            return element.name.toLowerCase().includes(name.toLowerCase());
+        }
+        
         const filterResults = this.state.fetchedClients.filter(filterParam);
 
         this.setState({ clientList: filterResults });
@@ -103,7 +106,10 @@ class NewAppointment extends Component {
         event.preventDefault();
         const name = event.target.value;
 
-        const filterParam = element => element.name.toLowerCase() === name.toLowerCase();
+        const filterParam = element => {
+            if (!name) return false
+            return element.name.toLowerCase().includes(name.toLowerCase());
+        }
 
         const filterResults = this.state.fetchedDoctors.filter(filterParam);
 
