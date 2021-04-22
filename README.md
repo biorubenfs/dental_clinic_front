@@ -69,6 +69,8 @@ You can now use the app
 
 ## Demo
 
+![demovideo](https://user-images.githubusercontent.com/76188418/115768719-fa0f3300-a3aa-11eb-821f-6aa8652872f3.mp4)
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/76188418/115443154-314adc00-a213-11eb-816f-c1e8b7ab9535.gif)
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/76188418/115443163-34de6300-a213-11eb-973a-c0e2e338e37c.gif)
 
