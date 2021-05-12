@@ -3,7 +3,7 @@ import AlertPopUp from "../../components/alertPopUp/AlertPopUp";
 import AppointmentCard from "../../components/appointmentCard/AppointmentCard";
 import AppointmentMessage from "../../components/appointmentMessage/AppointmentMessage";
 import fetchAppointments from "../../services/fetchAppointments";
-import './ViewAppointment.css'
+import './ViewAppointment.css';
 
 const ViewAppointments = () => {
 
@@ -25,7 +25,7 @@ const ViewAppointments = () => {
 
             if (rows) {
                 setResults(rows);
-            } else if (rows.length >= 0) {
+            } else if (rows.length <= 0) {
                 setError(1)
             }
 
