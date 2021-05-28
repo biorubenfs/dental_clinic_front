@@ -52,6 +52,7 @@ const ViewAppointments = () => {
             console.log(e);
         }
     }
+    console.log('test');
 
     return (
         <>
